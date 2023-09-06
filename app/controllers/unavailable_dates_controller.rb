@@ -1,0 +1,2 @@
+class UnavailableDatesController < ApplicationController
+end
