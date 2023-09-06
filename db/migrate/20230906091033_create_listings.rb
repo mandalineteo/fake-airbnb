@@ -6,6 +6,7 @@ class CreateListings < ActiveRecord::Migration[7.0]
       t.text :location
       t.integer :max_guests
       t.decimal :price_per_night
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
