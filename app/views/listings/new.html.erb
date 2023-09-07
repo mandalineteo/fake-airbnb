@@ -1,5 +1,6 @@
 <div class="container">
   <h2 class="mt-5">New Listing</h2>
+  <div class="mb-5">
   <%= simple_form_for(@listing) do |f| %>
     <%= f.input :name %>
     <%= f.input :details %>
@@ -9,4 +10,5 @@
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, "Create Listing", class:"btn btn-custom"%>
   <% end %>
+  </div>
 </div>
