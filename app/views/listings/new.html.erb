@@ -1,9 +1,12 @@
-<%= simple_form_for(@listing) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :details %>
-  <%= f.input :location %>
-  <%= f.input :max_guests %>
-  <%= f.input :price_per_night %>
-  <%# <%= f.input :host_id %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h2 class="mt-5">New Listing</h2>
+  <%= simple_form_for(@listing) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :details %>
+    <%= f.input :location %>
+    <%= f.input :max_guests %>
+    <%= f.input :price_per_night %>
+    <%# <%= f.input :host_id %>
+    <%= f.button :submit, "Create Listing", class:"btn btn-custom"%>
+  <% end %>
+</div>
