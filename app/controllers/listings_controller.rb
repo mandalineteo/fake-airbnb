@@ -6,4 +6,11 @@ class ListingsController < ApplicationController
 
   def show
   end
+
+  def new
+    @listing = Listing.new
+  end
+
+  def create
+  end
 end
