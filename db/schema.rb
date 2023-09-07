@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_084010) do
     t.text "details"
     t.text "location"
     t.integer "max_guests"
-    t.decimal "price_per_night"
+    t.float "price_per_night"
     t.bigint "host_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
