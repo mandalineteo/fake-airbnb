@@ -28,3 +28,16 @@ user1 = User.create!(
 end
 
 puts "Finished creating 11 users"
+
+# -----------------------------------------
+puts "Creating listings"
+Listing.destroy_all
+
+Listing.create!(
+  details: "Beautiful House",
+  location: "Singapore",
+  max_guests: "5",
+  price_per_night:
+)
+
+puts "Finished creating listings"
