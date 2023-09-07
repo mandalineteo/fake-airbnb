@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_07_051424) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_07_055954) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,11 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_051424) do
     t.integer "total_guests"
     t.string "status"
     t.bigint "listing_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "guest_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["guest_id"], name: "index_bookings_on_guest_id"
     t.index ["listing_id"], name: "index_bookings_on_listing_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -33,10 +33,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_051424) do
     t.text "location"
     t.integer "max_guests"
     t.decimal "price_per_night"
-    t.bigint "user_id", null: false
+    t.bigint "host_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_listings_on_user_id"
+    t.index ["host_id"], name: "index_listings_on_host_id"
   end
 
   create_table "unavailable_dates", force: :cascade do |t|
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_051424) do
   end
 
   add_foreign_key "bookings", "listings"
-  add_foreign_key "bookings", "users"
-  add_foreign_key "listings", "users"
+  add_foreign_key "bookings", "users", column: "guest_id"
+  add_foreign_key "listings", "users", column: "host_id"
   add_foreign_key "unavailable_dates", "listings"
 end
