@@ -48,6 +48,7 @@ puts "creating 5 listings for user 1..."
 5.times do
   Listing.create!(
     details: Faker::Restaurant.description,
+    name: Faker::Restaurant.name,
     location: Faker::Address.city,
     max_guests: Faker::Number.between(from: 1, to: 10),
     price_per_night: Faker::Number.decimal(l_digits: 2),
@@ -59,6 +60,7 @@ puts "creating 20 random listings..."
 20.times do
   Listing.create!(
     details: Faker::Restaurant.description,
+    name: Faker::Restaurant.name,
     location: Faker::Address.city,
     max_guests: Faker::Number.between(from: 1, to: 10),
     price_per_night: Faker::Number.decimal(l_digits: 2),
@@ -69,7 +71,51 @@ end
 puts "Finished creating listings"
 
 # ------------------------------------------
-puts "Creating bookings"
 
+booking_status = ["pending", "confirmed", "declined"]
+
+puts "Creating bookings"
+Booking.destroy_all
+user = User.all
+listing = Listing.all
+
+puts "creating 5 bookings for user 1..."
+5.times do
+  Booking.create!(
+    start_date: Faker::Date.between(from: '2023-06-01', to: '2023-08-31'),
+    end_date: Faker::Date.between(from: '2023-09-01', to: '2023-10-31'),
+    total_guests: Faker::Number.between(from: 1, to: 10),
+    status: booking_status.sample,
+    listing: Listing.find_by(host: user1),
+    guest: user.sample   #to check tomorrow (08-09-2023) host & guest may be the same person
+  )
+end
+
+
+puts "creating 20 random bookings..."
+20.times do
+  Booking.create!(
+    start_date: Faker::Date.between(from: '2023-06-01', to: '2023-08-31'),
+    end_date: Faker::Date.between(from: '2023-09-01', to: '2023-10-31'),
+    total_guests: Faker::Number.between(from: 1, to: 10),
+    status: booking_status.sample,
+    listing: listing.sample,
+    guest: user.sample   #to check tomorrow (08-09-2023) host & guest may be the same person
+  )
+end
 
 puts "Finished creating bookings"
+
+# ---------------------------------------------------
+
+puts "Creating unavailable dates"
+
+20.times do
+  UnavailableDate.create!(
+    start_date: Faker::Date.between(from: '2023-06-01', to: '2023-08-31'),
+    end_date: Faker::Date.between(from: '2023-09-01', to: '2023-10-31'),
+    listing: listing.sample
+  )
+end
+
+puts "Finished creating unavailable dates"
