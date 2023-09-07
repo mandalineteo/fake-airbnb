@@ -1,9 +1,9 @@
-x<%= simple_form_for(listing) do |f| %>
+<%= simple_form_for(@listing) do |f| %>
   <%= f.input :name %>
   <%= f.input :details %>
   <%= f.input :location %>
   <%= f.input :max_guests %>
   <%= f.input :price_per_night %>
-  <%= f.input :host_id %>
+  <%# <%= f.input :host_id %>
   <%= f.submit %>
 <% end %>
