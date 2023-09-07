@@ -6,7 +6,7 @@
     <%= f.input :location %>
     <%= f.input :max_guests %>
     <%= f.input :price_per_night %>
-    <%# <%= f.input :host_id %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, "Create Listing", class:"btn btn-custom"%>
   <% end %>
 </div>
