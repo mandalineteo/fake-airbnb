@@ -11,14 +11,16 @@ puts "Creating 11 Users"
 User.destroy_all
 
 user1 = User.create!(
+  first_name: "test1",
+  last_name: "test2",
   email: "test123@gmail.com",
   password: "password"
 )
 
 10.times do
   user = User.new(
-    # first_name: Faker::Name.first_name,
-    # last_name: Faker::Name.last_name,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     password: "password"
   )
