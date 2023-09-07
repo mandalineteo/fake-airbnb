@@ -2,3 +2,10 @@
   background-color: $airbnb-red;
   color: white;
 }
+
+.btn-outline-custom {
+  background-color: white;
+  color: $airbnb-red;
+  border: 2px solid $airbnb-red;
+  border-radius: 10px;
+}

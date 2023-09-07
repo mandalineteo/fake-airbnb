@@ -1,8 +1,25 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://res.cloudinary.com/dwbm5hzj4/image/upload/v1694066380/development/airbnb-logo_uwtt9h.png" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "airbnb-logo.png" %>
     <% end %>
+
+    <% if @show_navbar %>
+      <nav class="navbar navbar-light">
+        <div class="container-fluid">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-custom" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+      </nav>
+    <% end %>
+
+     <% if @show_navbar %>
+      <div>
+        <%= link_to "Airbnb Setup", new_listing_path, class:"btn btn-outline-custom" %>
+      </div>
+      <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,9 +28,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
           <li class="nav-item">
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>

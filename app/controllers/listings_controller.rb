@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
   before_action :set_host, only: %i[new create]
 
   def index
+    @listings = Listing.all
   end
 
   def show
@@ -16,7 +17,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.host = @host
     if @listing.save
-      redirect_to new_listing_path
+      redirect_to listings_path
     else
       render :new, status: :unprocessable_entity
     end
