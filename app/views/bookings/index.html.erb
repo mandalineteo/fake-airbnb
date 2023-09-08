@@ -1,0 +1,15 @@
+<div class='container'>
+  <h1>Trips</h1>
+  <div>
+    <h2>Upcoming reservations</h2>
+    <div>
+      <% current_user.bookings.each do |booking| %>
+        <h3><%= booking.listing.name %></h3>
+        <p><%= booking.start_date%> - <%= booking.end_date %></p>
+        <p><%= booking.listing.location %></p>
+        <p>In <%= distance_of_time_in_words(Date.today, booking.start_date) %><p>
+        <%= cl_image_tag booking.main_image_key, width: 200 %>
+      <% end %>
+    </div>
+  </div>
+</div>
