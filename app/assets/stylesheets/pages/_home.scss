@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+.background {
+  background-color: #FFFFFF;
+}
+
 .container {
   padding-top: 2rem;
 }
@@ -6,7 +10,8 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 2rem;
+  grid-gap: 0.8rem;
+  flex-grow: 1;
 }
 
 @media(max-width: 1200px) {
@@ -28,5 +33,71 @@
 }
 
 .card {
-  padding: 1rem;
+  padding: 4px;
+  border: none;
+  background-color: #FFFFFF;
+  font-size: 1rem;
+
+  // .carousel-slide {
+  //   position: relative;
+  // }
+
+  // .carousel-inner {
+  //   position: relative;
+  // }
+
+  .carousel-item {
+    img {
+    // aspect-ratio: 16 / 9;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    }
+
+    .fa-heart {
+      position: absolute;
+      z-index: 9;
+      right: 1rem;
+      top: 1rem;
+      color: white;
+      font-size: 1.5rem;
+    }
+  }
+
+  button {
+    border-radius: 50%;
+
+    i {
+      font-size: 2rem;
+      opacity: 100%;
+    }
+  }
+
+  .text {
+    width: 100%;
+  }
+
+  h1, p {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .light {
+    margin-bottom: 0;
+    color: rgb(97, 97, 97)
+  }
+
+  .price {
+    margin-top: 1rem;
+  }
+
+  .rating {
+    text-align: right;
+  }
 }

@@ -1,61 +1,11 @@
 <%# <h1>Listings#index</h1>
 <p>Find me in app/views/listings/index.html.erb</p> %>
+<div class="background">
+  <div class="container">
+    <div class="cards">
 
-<div class="container">
-  <div class="cards">
+      <%= render @listings %>
 
-    <% @listings.each do |listing| %>
-      <div class="card">
-          <% listing.photos.each do |photo| %>
-            <div class="img-carousel"><%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %></div>
-          <% end %>
-
-          <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-
-          <div>
-            <div class="description">
-              <h1><%= listing.name %></h1>
-              <p><%= listing.location %></p>
-              <p>next available dates?</p>
-              <p class="price"><b>$<%= listing.price_per_night %> SGD</b> night</p>
-            </div>
-
-            <div class="rating">
-              <p>
-                <i class="fa-solid fa-star"></i>
-                rating
-              </p>
-            </div>
-          </div>
-
-      </div>
-    <% end %>
-
-
+    </div>
   </div>
 </div>
