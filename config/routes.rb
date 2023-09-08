@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create edit update]
     resources :unavailable_dates, only: %i[index create]
   end
-  resources :bookings, only: %i[index]
+  resources :bookings, only: %i[index] do
+    collection do
+      get :host
+    end
+  end
 end
