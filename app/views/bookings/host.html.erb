@@ -1,0 +1,62 @@
+</h1>
+<div class="container host">
+  <div>
+    <div>
+      <h1 id="host-header">Welcome back <%= current_user.first_name %><%= current_user.last_name %>🎉🎉🎉</h1>
+    </div>
+
+    <div class="sticky-notepad">
+      <ul>
+        <li class="sticky-notes sn-one">
+          <i class="fa-solid fa-paperclip"></i>
+          <a href="#"><p>Pending</p></a>
+        </li>
+
+        <li class="sticky-notes sn-two">
+          <i class="fa-solid fa-paperclip"></i>
+          <a href="#"><p>Confirmed</p></a>
+        </li>
+
+        <li class="sticky-notes sn-three">
+          <i class="fa-solid fa-paperclip"></i>
+          <a href="#"><p>Declined</p></a>
+        </li>
+      </ul>
+    </div>
+
+    <% @bookings.each do |booking| %>
+
+      <div class="wrapper">
+        <div class="d-flex">
+          <h3><%= booking.listing.name %></h3>
+          <p><%= booking.listing.location %></p>
+        </div>
+
+        <div class="d-flex">
+          <h4>Current status</h4>
+          <p><%= booking.status %></p>
+        </div>
+
+        <div class="d-flex">
+          <p><%= booking.guest.first_name %><%= booking.guest.last_name %></p>
+          <p><%= booking.listing.max_guests %></p>
+        </div>
+
+        <div class="d-flex">
+          <div class="row">
+            <div class="col">
+              <h4>Check-in Date: <p><%= booking.start_date %></p></h4>
+            </div>
+            <div class="col">
+              <h4>Check-out Date: <p><p><%= booking.end_date %></p></h4>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    <% end %>
+  </div>
+</div>
+
+        <%# <p><%= booking.listing.details %>

@@ -60,8 +60,8 @@ if seed_listings
       host: user1
     )
 
-    image_url = URI.open("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80")
-    listing.photos.attach(io: image_url, filename: "apartment.png", content_type: "image/png")
+    # image_url = URI.open("https://source.unsplash.com/featured/house&id=#{rand(100000)}")
+    # listing.photos.attach(io: image_url, filename: "#{listing.name.split.join('-')}.png", content_type: "image/png")
 
     puts " --- created #{listing.name}."
 
@@ -78,8 +78,8 @@ if seed_listings
       host: users.sample
     )
 
-    image_url = URI.open("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80")
-    listing.photos.attach(io: image_url, filename: "apartment.png", content_type: "image/png")
+    # image_url = URI.open("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80")
+    # listing.photos.attach(io: image_url, filename: "apartment.png", content_type: "image/png")
 
     puts " --- created #{listing.name}."
   end
