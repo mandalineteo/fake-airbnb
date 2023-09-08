@@ -19,7 +19,7 @@ class ListingsController < ApplicationController
     if @listing.save
       redirect_to :root
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_ent≥ity
     end
   end
 
