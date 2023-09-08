@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_host, only: %i[new create]
+  before_action :set_listing, only: %i[show]
 
   def index
     @listings = Listing.all
@@ -15,18 +15,18 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
-    @listing.host = @host
+    @listing.host = current_user
     if @listing.save
-      redirect_to listings_path
+      redirect_to :root
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_ent≥ity
     end
   end
 
   private
 
-  def set_host
-    @host = current_user
+  def set_listing
+    @listing = Listing.find(params[:id])
   end
 
   def listing_params
