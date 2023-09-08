@@ -44,6 +44,7 @@ Listing.destroy_all
 #   host: user1
 # )
 
+# TODO: TO ADD IMAGES
 puts "creating 5 listings for user 1..."
 5.times do
   Listing.create!(
@@ -76,10 +77,23 @@ booking_status = ["pending", "confirmed", "declined"]
 
 puts "Creating bookings"
 Booking.destroy_all
-user = User.all
-listing = Listing.all
+# users = User.all
+listings = Listing.all
 
 puts "creating 5 bookings for user 1..."
+# TODO : use Date module for dates
+# User.where.not(id: User.first.id)
+
+# Create present bookings
+# - Bookings made to user 1
+#   - 2 pending
+#   - 2 declined
+#   - 2 confirmed
+# - Bookings made by user 1
+#   - 2 pending
+#   - 2 declined
+#   - 2 confirmed
+
 5.times do
   Booking.create!(
     start_date: Faker::Date.between(from: '2023-06-01', to: '2023-08-31'),
@@ -91,7 +105,6 @@ puts "creating 5 bookings for user 1..."
   )
 end
 
-
 puts "creating 20 random bookings..."
 20.times do
   Booking.create!(
@@ -99,7 +112,7 @@ puts "creating 20 random bookings..."
     end_date: Faker::Date.between(from: '2023-09-01', to: '2023-10-31'),
     total_guests: Faker::Number.between(from: 1, to: 10),
     status: booking_status.sample,
-    listing: listing.sample,
+    listing: listings.sample,
     guest: user.sample   #to check tomorrow (08-09-2023) host & guest may be the same person
   )
 end
@@ -112,9 +125,9 @@ puts "Creating unavailable dates"
 
 20.times do
   UnavailableDate.create!(
-    start_date: Faker::Date.between(from: '2023-06-01', to: '2023-08-31'),
-    end_date: Faker::Date.between(from: '2023-09-01', to: '2023-10-31'),
-    listing: listing.sample
+    start_date: Date.today - 2.months,
+    end_date: Date.today + 2.months,
+    listing: listing.first(3)
   )
 end
 
