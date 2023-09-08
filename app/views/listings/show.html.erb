@@ -1,14 +1,14 @@
-<div class="container my-5">
+<div class="container my-3">
   <h2><%= @listing.name %></h1>
   <p><%= @listing.location %></p>
   <% @listing.photos.each do |photo| %>
     <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
   <% end %>
   <div class="mt-5">
-    <div class="container d-flex">
+    <div class="container d-flex align-items-start">
       <div class="col-md-7 me-5">
 
-        <h4 class="my-2 fw-bold"><%= "Apartment hosted by #{@listing.host_id}" %></h4>
+        <h4 class="my-2 fw-bold"><%= "Apartment hosted by #{@listing.host.full_name}" %></h4>
         <div class="d-flex listing-details fw-light">
             <%= "#{@listing.max_guests} guests" %>
           <ul class="d-flex">
@@ -44,7 +44,7 @@
       <hr>
       <p class="my-4"><%= @listing.details %></p>
     </div>
-        <div class="listing-card col-md-5">
+        <div class="listing-card col-md-5 sticky-top">
           <div class="d-flex mb-3">
             <h3 class="fw-bolder mb-0 me-2"><%= "$#{@listing.price_per_night} SGD" %></h3>
             <p class="align-self-end mb-1">night</p>
