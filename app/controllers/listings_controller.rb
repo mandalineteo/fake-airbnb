@@ -17,9 +17,9 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.host = @host
     if @listing.save
-      redirect_to listings_path
+      redirect_to :root
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_ent≥ity
     end
   end
 
