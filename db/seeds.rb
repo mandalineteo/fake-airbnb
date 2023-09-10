@@ -21,8 +21,8 @@ if seed_users
   users = []
 
   user1 = User.create!(
-    first_name: "test1",
-    last_name: "test2",
+    first_name: "Trust",
+    last_name: "Easy",
     email: "test123@gmail.com",
     password: "password"
   )
@@ -52,16 +52,16 @@ if seed_listings
   puts "creating 5 listings for user 1..."
   5.times do
     listing = Listing.create!(
-      details: Faker::Restaurant.description,
-      name: Faker::Restaurant.name,
-      location: Faker::Address.city,
+      details: Faker::TvShows::HowIMetYourMother.catch_phrase,
+      name: Faker::Games::Pokemon.move,
+      location: Faker::TvShows::Friends.location,
       max_guests: Faker::Number.between(from: 1, to: 10),
       price_per_night: Faker::Number.decimal(l_digits: 2),
       host: user1
     )
 
-    # image_url = URI.open("https://source.unsplash.com/featured/house&id=#{rand(100000)}")
-    # listing.photos.attach(io: image_url, filename: "#{listing.name.split.join('-')}.png", content_type: "image/png")
+    image_url = URI.open("https://source.unsplash.com/featured/house&id=#{rand(100000)}")
+    listing.photos.attach(io: image_url, filename: "#{listing.name.split.join('-')}.png", content_type: "image/png")
 
     puts " --- created #{listing.name}."
 
@@ -70,16 +70,16 @@ if seed_listings
   puts "\ncreating 20 random listings..."
   20.times do
     listing = Listing.create!(
-      details: Faker::Restaurant.description,
-      name: Faker::Restaurant.name,
-      location: Faker::Address.city,
+      details: Faker::TvShows::Friends.quote,
+      name: Faker::Games::Pokemon.move,
+      location: Faker::TvShows::FamilyGuy.location,
       max_guests: Faker::Number.between(from: 1, to: 10),
       price_per_night: Faker::Number.decimal(l_digits: 2),
       host: users.sample
     )
 
-    # image_url = URI.open("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80")
-    # listing.photos.attach(io: image_url, filename: "apartment.png", content_type: "image/png")
+    image_url = URI.open("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80")
+    listing.photos.attach(io: image_url, filename: "apartment.png", content_type: "image/png")
 
     puts " --- created #{listing.name}."
   end

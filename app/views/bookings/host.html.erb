@@ -1,73 +1,54 @@
 <div class="container host">
-  <div>
-    <div>
-      <h1 id="host-header">Welcome back <%= current_user.first_name %><%= current_user.last_name %>🎉🎉🎉</h1>
-    </div>
 
-    <div class="sticky-notepad">
-      <ul>
-        <li class="sticky-notes sn-one">
-          <i class="fa-solid fa-paperclip"></i>
-          <a href="#"><p>Pending</p></a>
-        </li>
+  <div class="navbar host-nav mt-4">
+    <%= link_to "Dashboard", host_bookings_path %>
+    <%= link_to "Stats",  stats_bookings_path %>
+    <%= link_to "Inbox", inbox_bookings_path %>
+    <%= link_to "Your Listing",  host_listing_bookings_path %>
+    <a href="#">Host Assist</a>
+    <a href="#">Your Reservation</a>
+    <a href="#">Profile</a>
+    <a href="#">Account</a>
+  </div>
 
-        <li class="sticky-notes sn-two">
-          <i class="fa-solid fa-paperclip"></i>
-          <a href="#"><p>Confirmed</p></a>
-        </li>
 
-        <li class="sticky-notes sn-three">
-          <i class="fa-solid fa-paperclip"></i>
-          <a href="#"><p>Declined</p></a>
-        </li>
-      </ul>
-    </div>
 
-    <% @bookings.each do |booking| %>
+  <% User.joins(:bookings).joins(:listings).where.not(id: current_user.id).distinct.each do |user| %>
+    <% user.bookings.each do |booking| %>
+      <div class="wrapper card mb-3">
+        <div class="row g-0">
+          <div class="col-4">
+            <%# <div class="image">
+              <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="" class="img-fluid rounded-start">
+            </div> %>
 
-      <div class="wrapper">
-        <div class="d-flex">
-          <h3><%= booking.listing.name %></h3>
-          <p><%= booking.listing.location %></p>
-        </div>
-
-        <div class="d-flex">
-          <h4>Booking status</h4>
-          <p><%= booking.status %></p>
-        </div>
-
-        <div class="d-flex">
-          <p><%= booking.guest.first_name %><%= booking.guest.last_name %></p>
-          <p><%= booking.listing.max_guests %></p>
-        </div>
-
-        <div class="d-flex">
-          <div class="row">
-            <div class="col">
-              <h4>Check-in Date: <p><%= booking.start_date %></p></h4>
+            <div class="test-image">
+              <% booking.listing.photos.each do |photo| %>
+                <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+              <% end %>
             </div>
-            <div class="col">
-              <h4>Check-out Date: <p><p><%= booking.end_date %></p></h4>
+          </div>
+
+          <div class="col-8 mt-3">
+            <div class="card-body">
+              <h2><%= booking.listing.location %></h2>
+              <p>From: <%= booking.start_date %></p>
+              <p>End: <%= booking.end_date %></p>
+              <h4>Guest: <%= booking.guest.first_name %></h4>
+              <%# <>Status: <%= booking.stats %>
+
+              <% if booking.status == "confirmed" %>
+                <p>Status: Confirmed</p>
+              <% elsif booking.status == "declined" %>
+                <p>Status: Declined</p>
+              <% elsif booking.status == "pending" %>
+                <p>Status: Pending</p>
+              <% end %>
             </div>
           </div>
         </div>
-
-
-        <%# =============== %>
-
-
-      <h2>Pending Bookings:</h2>
-      <ul>
-        <% Booking.where(status: "pending").each do |booking| %>
-          <li>
-            Guest: <%= booking.guest.first_name %><br>
-            Listing: <%= booking.listing.max_guests %><br>
-          </li>
-        <% end %>
-      </ul>
       </div>
     <% end %>
+  <% end %>
   </div>
 </div>
-
-        <%# <p><%= booking.listing.details %>
