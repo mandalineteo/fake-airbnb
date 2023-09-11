@@ -4,6 +4,9 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+    if params[:query].present?
+      @listings = @listings.where("location ILIKE ?", "%#{params[:query]}%")
+    end
   end
 
   def show
