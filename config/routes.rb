@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: %i[index] do
     collection do
-      get :host, :host_listing, :stats, :inbox
+      get :host, :stats
     end
   end
 end

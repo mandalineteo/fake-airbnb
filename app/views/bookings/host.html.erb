@@ -1,14 +1,21 @@
 <div class="container host">
 
   <div class="navbar host-nav mt-4">
-    <%= link_to "Dashboard", host_bookings_path %>
-    <%= link_to "Stats",  stats_bookings_path %>
-    <%= link_to "Inbox", inbox_bookings_path %>
-    <%= link_to "Your Listing",  host_listing_bookings_path %>
-    <a href="#">Host Assist</a>
-    <a href="#">Your Reservation</a>
-    <a href="#">Profile</a>
-    <a href="#">Account</a>
+    <div class="dropdown">
+
+      <button class="btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        All Listings
+      </button>
+      <ul class="dropdown-menu mt-2">
+        <li><a class="dropdown-item" href="#">Confirmed</a></li>
+        <li><a class="dropdown-item" href="#">Pending</a></li>
+        <li><a class="dropdown-item" href="#">Declined</a></li>
+      </ul>
+    </div>
+
+    <button class="btn">
+      <%= link_to "Stats",  stats_bookings_path %>
+    </button>
   </div>
 
 

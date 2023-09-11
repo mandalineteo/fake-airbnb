@@ -21,8 +21,8 @@ if seed_users
   users = []
 
   user1 = User.create!(
-    first_name: "Trust",
-    last_name: "Easy",
+    first_name: "Test1",
+    last_name: "Test2",
     email: "test123@gmail.com",
     password: "password"
   )
