@@ -14,5 +14,10 @@ Rails.application.routes.draw do
     collection do
       get :host, :stats
     end
+
+    member do
+      patch :confirm
+      patch :decline
+    end
   end
 end

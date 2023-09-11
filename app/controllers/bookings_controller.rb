@@ -1,4 +1,34 @@
 class BookingsController < ApplicationController
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def confirm
+    @booking = Booking.find(params[:id])
+
+    if @booking.listing.host != current_user
+      render json: { success: false }
+    else
+      @booking.status = "confirmed"
+      @booking.save!
+
+      render json: { success: true }
+    end
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+
+    if @booking.listing.host != current_user
+      render json: { success: false }
+    else
+      @booking.status = "declined"
+      @booking.save!
+
+      render json: { success: true }
+    end
+  end
+
   def host
     @bookings = Booking.requests_for(current_user)
     @listings = Listing.all
@@ -25,5 +55,11 @@ class BookingsController < ApplicationController
       puts "filter by current month"
       @bookings = @bookings.where("start_date > ?", Date.today.beginning_of_month)
     end
+  end
+
+  private
+
+  def booking_status_params
+    params.require(:booking).permit(:status)
   end
 end

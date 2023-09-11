@@ -17,5 +17,4 @@ class Booking < ApplicationRecord
     price * num_of_days
   end
 
-
 end

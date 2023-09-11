@@ -39,7 +39,7 @@ a:hover {
 
 .card {
   border-radius: 8px;
-  height: 201px;
+  // height: 201px;
   width: 800px;
   margin: 0 auto;
   background-color: white;
@@ -53,7 +53,6 @@ a:hover {
 
 .card p {
   font-size: 12px;
-
 }
 
 h2 {
@@ -65,15 +64,17 @@ h2 {
   font-weight: bolder;
 }
 
-.listing-image {
-  padding: 0 auto;
-
+.listing-image div {
+  padding-left: 0;
 }
 
-.listing-image div {
-  margin-left: 0px;
-  padding-left: 0px;
-  object-fit: fill;
+.listing-image img {
+  position: relative;
+  right: 10px;
+  padding-right: 30px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-position: center;
 }
 
 @media(max-width: 768px)  {

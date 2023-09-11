@@ -4,10 +4,10 @@
 
     <ul class="host-listing-display">
       <li>
-        <%= link_to "Listings", host_bookings_path %>
+        <%= link_to "Listings", host_bookings_path, style:"font-weight: #{current_page?(host_bookings_path) ? 'bold' : 'normal'}" %>
       </li>
       <li>
-        <%= link_to "Stats",  stats_bookings_path %>
+        <%= link_to "Stats",  stats_bookings_path, style:"font-weight: #{current_page?(stats_bookings_path) ? 'bold' : 'normal'}" %>
       </li>
     </ul>
   </div>
@@ -15,20 +15,18 @@
   <hr>
 
   <div class="booking_link" style="height:5rem; padding-top: 2rem;">
-    <%= link_to "All", host_bookings_path   %>
-    <%= link_to "Upcoming", host_bookings_path(filter: "upcoming")   %>
-    <%= link_to "Pending", host_bookings_path(filter: "pending")   %>
+    <%= link_to "All", host_bookings_path, style:"font-weight: #{params[:filter].present? ? 'normal' : 'bold'}"   %>
+    <%= link_to "Upcoming", host_bookings_path(filter: "upcoming"), style:"font-weight: #{params[:filter] != 'upcoming' ? 'normal' : 'bold'}" %>
+    <%= link_to "Pending", host_bookings_path(filter: "pending"),  style:"font-weight: #{params[:filter] != 'pending' ? 'normal' : 'bold'}" %>
   </div>
 
   <% @bookings.each do |booking| %>
       <div class="wrapper card mb-3">
         <div class="row g-0">
           <div class="col-4">
-            <div class="listing-image rounded">
-              <% booking.listing.photos.each do |photo| %>
-                <div><%= cl_image_tag(photo.key, width: 250, height: 200, crop: :fill) %></div>
-              <% end %>
-            </div>
+            <% booking.listing.photos.each do |photo| %>
+              <div class="listing-image"><%= cl_image_tag(photo.key, width: 250, height: "240", crop: :fill) %></div>
+            <% end %>
           </div>
 
           <div class="col-8 mt-3">
@@ -37,14 +35,31 @@
               <p><%= booking.start_date.strftime("%d %b %Y")%> - <%= booking.end_date.strftime("%d %b %Y") %></p>
               <p>Guest: <%= booking.guest.first_name %></p>
 
+<%#
+                <%= form_with model: @booking do |f| %>
+                  <%# <%= f.submit value="Accept" %>
+                <%# <% end %>
 
+
+
+                <%# <%= button_to "Confirm", {controller: "bookings", action: "confirm"}, :method => :patch %>
+              <div data-controller="approve-booking">
               <% if booking.status == "confirmed" %>
-                <p>Status: Confirmed</p>
+                <p data-approve-booking-target="status">Status: Confirmed</p>
               <% elsif booking.status == "declined" %>
-                <p>Status: Declined</p>
-              <% elsif booking.status == "pending" %>
-                <p>Status: Pending</p>
-              <% end %>
+                <p data-approve-booking-target="status">Status: Declined</p>
+              <% elsif booking.status == "pending"%>
+                <p data-approve-booking-target="status">Status: Pending</p>
+                <div style="display:flex">
+                  <%= form_with url: confirm_booking_path(booking), method: :patch, data: { action: "submit->approve-booking#submit"} do |f|%>
+                    <%= submit_tag "Confirm", class: "btn btn-sm btn-success", data: {"approve-booking-target": "submit"} %>
+                  <% end %>
+                  <%= form_with url: decline_booking_path(booking), method: :patch, data: {action: "submit->approve-booking#decline"} do |f|%>
+                    <%= submit_tag "Decline", class: "btn btn-sm btn-danger", data: {"approve-booking-target": "decline"} %>
+                  <% end %>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
