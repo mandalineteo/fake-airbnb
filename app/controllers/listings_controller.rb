@@ -7,6 +7,10 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @marker = {
+      lat: @flat.geocoded.latitude,
+      lng: @flat.geocoded.longitude
+    }
   end
 
   def new
