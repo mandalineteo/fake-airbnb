@@ -3,9 +3,11 @@
 <div class="background">
   <div class="container">
     <div class="cards">
-
-      <%= render @listings %>
-
+      <% if @listings.any? %>
+        <%= render @listings %>
+      <% else %>
+          <p><em>Sorry, no listings found.</em></p>
+      <% end %>
     </div>
   </div>
 </div>
