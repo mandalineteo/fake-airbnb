@@ -33,7 +33,7 @@
                 <p class="smallest-text listing-general-details-text my-0">100% of recent guests gave the location a good rating.</p>
               </div>
             </li>
-            <li class="d-flex align-items-center">
+            <li class="d-flex align-items-center" id="free-cancellation">
               <i class="fa-regular fa-calendar"></i>
               <div class="ms-2">
                 <p class="listing-general-details-title my-0">Free cancellation before dd mmm</p>
@@ -44,20 +44,41 @@
       <hr>
       <p class="my-4"><%= @listing.details %></p>
     </div>
-        <div class="listing-card col-md-5 sticky-top">
+        <div class="listing-card col-md-5 sticky-top" style="top: 50px">
           <div class="d-flex mb-3">
             <h3 class="fw-bolder mb-0 me-2"><%= "$#{@listing.price_per_night} SGD" %></h3>
             <p class="align-self-end mb-1">night</p>
           </div>
           <div>
             <div class="d-grid gap-2">
-              <%= link_to "Reserve", edit_listing_booking_path(@listing), class:"btn btn-custom btn-large" %>
+              <div data-controller="datepicker" data-datepicker-price-value="<%= @listing.price_per_night %>" >
+                <div class="datepicker">
+                  <div data-action="click->datepicker#open" style="padding-left: 8px; border-right: solid black; border-width: 1px; width: 50%;">
+                    <small>CHECK-IN</small><br>
+                    <p id="start_date_display"><small style="color: grey">Add Date</small></p>
+                  </div>
+                  <div data-action="click->datepicker#open" style="padding-left: 8px;">
+                    <small>CHECK-OUT</small><br>
+                       <p id="end_date_display"><small style="color: grey">Add Date</small></p>
+                  </div>
+                </div>
+
+                <input id="datepicker" style="visibility: hidden"/>
+                 <%= form_with url:new_listing_booking_path(@listing), method: "get" do |form| %>
+                  <%= form.date_field :start_date, style: "display: none" %>
+                  <%= form.date_field :end_date, style: "display: none" %>
+
+                  <%= form.label :guests, "NUMBER OF GUESTS", class:"smallest-text" %>
+                  <%= form.number_field :guests, class: "form-control datepicker mb-3 mt-0", max: @listing.max_guests, required: true %>
+                  <%= form.submit "Reserve", id: "reserve", class:"btn btn-custom btn-large", style: "width: 100%", disabled: true %>
+                <% end %>
+              </div>
             </div>
             <p class="smallest-text text-center">You won't be charged yet</p>
           </div>
           <div class="d-flex justify-content-between price-breakdown pt-4">
-            <p><%= "$#{@listing.price_per_night} SGD X 2 nights" %></p>
-            <p><%= "$#{@listing.price_per_night*2} SGD" %></p>
+            <p><%= "$#{@listing.price_per_night} SGD" %><span id="no_of_nights"></span></p>
+            <p id="total_nights_price"></p>
           </div>
           <div class="d-flex justify-content-between price-breakdown">
             <p><%= "Cleaning fee" %></p>
@@ -70,7 +91,7 @@
           <hr>
           <div class="d-flex justify-content-between price-breakdown">
             <p><strong><%= "Total before taxes" %></strong></p>
-            <p><strong><%= "$55 SGD" %></strong></p>
+            <p id="total_price"><strong></strong></p>
           </div>
         </div>
       </div>
