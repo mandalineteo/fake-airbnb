@@ -1,15 +1,41 @@
 <div class='container'>
   <h1>Trips</h1>
   <div>
-    <h2>Upcoming reservations</h2>
-    <div>
-      <% current_user.bookings.each do |booking| %>
-        <h3><%= booking.listing.name %></h3>
-        <p><%= booking.start_date%> - <%= booking.end_date %></p>
-        <p><%= booking.listing.location %></p>
-        <p>In <%= distance_of_time_in_words(Date.today, booking.start_date) %><p>
-        <%= cl_image_tag booking.main_image_key, width: 200 %>
-      <% end %>
+    <h2 style="font-size: 1.2rem"><strong>Upcoming reservations</strong></h2>
+      <div class="row">
+      <div class="col-md-9">
+        <% current_user.bookings.each do |booking| %>
+        <div class="card w-100 mb-3 p-0">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="card-body">
+                <div>
+                    <h3 style="1.2rem"><%= booking.listing.name %></h3>
+                    <p><%= booking.listing.location %></p>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-4 border-end">
+                    <small><%= booking.start_date%> - <%= booking.end_date %></small><br>
+                  </div>
+                  <div class="col-8">
+                  <small style="font-size: 0.8rem; color: grey;"><%= booking.listing.details.truncate(120) %></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5" style="background: url(<%= cl_image_path booking.main_image_key %>); background-size: cover; background-position: center; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+              <span class="badge text-bg-light">
+                <small>In <%= distance_of_time_in_words(Date.today, booking.start_date) %></small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        Placeholder
+      </div>
     </div>
   </div>
 </div>

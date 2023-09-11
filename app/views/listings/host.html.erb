@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>All my listings</h1>
+  <div class="row">
+    <% @listings.each do |listing| %>
+      <div class="card w-100 mb-3">
+        <h3><strong><%= listing.name %></strong></h3>
+        <p>Location: <%= listing.location %></p>
+        <p>Details: <%= listing.details %></p>
+        <p>Maximum number of guests: <%= listing.max_guests %></p>
+        <p>Price per night: <%= listing.price_per_night %></p>
+        <%= cl_image_tag listing.photos.first.key, width: 100 %>
+        <%= link_to "Delete this listing", listing_path(listing), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{listing.name}?"}%>
+      </div>
+    <% end %>
+  </div>
+</div>
