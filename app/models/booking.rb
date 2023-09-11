@@ -17,4 +17,7 @@ class Booking < ApplicationRecord
     price * num_of_days
   end
 
+  def main_image_key
+    listing.photos.first.key
+  end
 end

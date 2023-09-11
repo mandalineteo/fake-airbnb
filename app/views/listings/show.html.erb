@@ -1,0 +1,83 @@
+<div class="container my-3">
+  <h2><%= @listing.name %></h1>
+  <p><%= @listing.location %></p>
+  <% @listing.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+  <div class="mt-5">
+    <div class="container d-flex align-items-start">
+      <div class="col-md-7 me-5">
+
+        <h4 class="my-2 fw-bold"><%= "Apartment hosted by #{@listing.host.full_name}" %></h4>
+        <div class="d-flex listing-details fw-light">
+            <%= "#{@listing.max_guests} guests" %>
+          <ul class="d-flex">
+            <li class="me-4">Studio</li>
+            <li><%= "#{@listing.max_guests} bedrooms" %></li>
+          </ul>
+        </div>
+        <hr>
+        <div>
+          <ul class="list-unstyled" id="listing-standard-details">
+            <li class="d-flex align-items-center">
+              <i class="fa-solid fa-door-open"></i>
+              <div class="ms-1">
+                <p class="my-0">Self check-in</p>
+                <p class="smallest-text listing-general-details-text my-0">Check yourself in with the smartlock.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="fa-solid fa-location-dot"></i>
+              <div class="ms-2">
+                <p class="my-0">Great location</p>
+                <p class="smallest-text listing-general-details-text my-0">100% of recent guests gave the location a good rating.</p>
+              </div>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="fa-regular fa-calendar"></i>
+              <div class="ms-2">
+                <p class="listing-general-details-title my-0">Free cancellation before dd mmm</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <hr>
+      <p class="my-4"><%= @listing.details %></p>
+    </div>
+        <div class="listing-card col-md-5 sticky-top">
+          <div class="d-flex mb-3">
+            <h3 class="fw-bolder mb-0 me-2"><%= "$#{@listing.price_per_night} SGD" %></h3>
+            <p class="align-self-end mb-1">night</p>
+          </div>
+          <div>
+            <div class="d-grid gap-2">
+              <%= link_to "Reserve", edit_listing_booking_path(@listing), class:"btn btn-custom btn-large" %>
+            </div>
+            <p class="smallest-text text-center">You won't be charged yet</p>
+          </div>
+          <div class="d-flex justify-content-between price-breakdown pt-4">
+            <p><%= "$#{@listing.price_per_night} SGD X 2 nights" %></p>
+            <p><%= "$#{@listing.price_per_night*2} SGD" %></p>
+          </div>
+          <div class="d-flex justify-content-between price-breakdown">
+            <p><%= "Cleaning fee" %></p>
+            <p><%= "$26 SGD" %></p>
+          </div>
+          <div class="d-flex justify-content-between price-breakdown">
+            <p><%= "Airbnb service fee" %></p>
+            <p><%= "$73 SGD" %></p>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between price-breakdown">
+            <p><strong><%= "Total before taxes" %></strong></p>
+            <p><strong><%= "$55 SGD" %></strong></p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= [@marker].to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  </div>
+</div>

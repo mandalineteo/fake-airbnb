@@ -1,0 +1,19 @@
+<div class="card">
+  <%= link_to listing do %>
+    <div>
+      <%= render 'listing-carousel', listing: listing %>
+
+      <div class="text d-flex justify-content-between">
+        <div class="description">
+          <h1><%= listing.name %></h1>
+          <p class="light"><%= listing.location %></p>
+          <p class="light">next available dates?</p>
+          <p class="price"><b>$<%= listing.price_per_night %> SGD</b> night</p>
+        </div>
+        <div class="rating">
+          <p><i class="fa-solid fa-star"></i>rating</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

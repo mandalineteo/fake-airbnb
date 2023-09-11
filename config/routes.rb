@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   resources :listings, only: %i[show new create destroy] do
     resources :bookings, only: %i[new create edit update]
     resources :unavailable_dates, only: %i[index create]
+
+    collection do
+      get :host
+    end
   end
+
   resources :bookings, only: %i[index] do
     collection do
       get :host, :stats

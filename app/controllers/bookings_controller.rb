@@ -1,4 +1,20 @@
 class BookingsController < ApplicationController
+
+  def index
+  end
+
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
   def edit
     @booking = Booking.find(params[:id])
   end
@@ -62,4 +78,5 @@ class BookingsController < ApplicationController
   def booking_status_params
     params.require(:booking).permit(:status)
   end
+
 end

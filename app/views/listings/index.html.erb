@@ -1,12 +1,13 @@
-<h1>Listings#index</h1>
-<p>Find me in app/views/listings/index.html.erb</p>
-
-<% @listings.each do |listing| %>
-<ul>
-  <li><%= listing.name %></li>
-  <% listing.photos.each do |photo| %>
-    <li><%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %></li>
-  <% end %>
-
-</ul>
-<% end %>
+<%# <h1>Listings#index</h1>
+<p>Find me in app/views/listings/index.html.erb</p> %>
+<div class="background">
+  <div class="container">
+    <div class="cards">
+      <% if @listings.any? %>
+        <%= render @listings %>
+      <% else %>
+          <p><em>Sorry, no listings found.</em></p>
+      <% end %>
+    </div>
+  </div>
+</div>
