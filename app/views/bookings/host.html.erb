@@ -35,14 +35,7 @@
               <p><%= booking.start_date.strftime("%d %b %Y")%> - <%= booking.end_date.strftime("%d %b %Y") %></p>
               <p>Guest: <%= booking.guest.first_name %></p>
 
-<%#
-                <%= form_with model: @booking do |f| %>
-                  <%# <%= f.submit value="Accept" %>
-                <%# <% end %>
-
-
-
-                <%# <%= button_to "Confirm", {controller: "bookings", action: "confirm"}, :method => :patch %>
+              <%# <%= button_to "Confirm", {controller: "bookings", action: "confirm"}, :method => :patch %>
               <div data-controller="approve-booking">
               <% if booking.status == "confirmed" %>
                 <p data-approve-booking-target="status">Status: Confirmed</p>
