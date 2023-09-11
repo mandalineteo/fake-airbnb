@@ -2,6 +2,10 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_listing, only: %i[show]
 
+  def host
+    @listings = current_user.listings
+  end
+
   def index
     @listings = Listing.all
     if params[:query].present?
@@ -26,8 +30,14 @@ class ListingsController < ApplicationController
     if @listing.save
       redirect_to :root
     else
-      render :new, status: :unprocessable_ent≥ity
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @listing = current_user.listings.find(params[:id])
+    @listing.destroy
+    redirect_to host_listings_path, status: :see_other
   end
 
   private
