@@ -1,39 +1,37 @@
-<div class="container">
+<div class="container host">
 
-  <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid mt-4">
-      <%= link_to "Dashboard", host_bookings_path %>
-      <%= link_to "Stats",  stats_bookings_path %>
-    </div>
-  </nav>
+  <div style="height:5rem; padding-top: 2rem;" class="host-header">
 
-  <div class="navbar mt-4">
-
+    <ul class="host-listing-display">
+      <li>
+        <%= link_to "Listings", host_bookings_path %>
+      </li>
+      <li>
+        <%= link_to "Stats",  stats_bookings_path %>
+      </li>
+    </ul>
   </div>
 
   <div>
-    <div>
-      <button class="btn">Ratings</button>
-      <button class="btn">Earnings</button>
-      <button class="btn">Views</button>
+    <div class="earning-title">
+      <h2>Earnings</h2>
     </div>
 
     <hr>
 
-    <div class="mt-4">
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Select a month</option>
-        <option value="1">September</option>
-        <option value="2">October</option>
-        <option value="3">November</option>
-      </select>
+    <div class="mt-4 ">
+      <div style="height:5rem; padding-top: 2rem;" class="booking_link">
+    <%= link_to "Lifetime", stats_bookings_path   %>
+    <%= link_to "Current Year", stats_bookings_path(filter: "current_year")   %>
+    <%= link_to "Current Month", stats_bookings_path(filter: "current_month")   %>
+  </div>
+
     </div>
 
-    <div class="mt-4">
-      <h1>$3,323</h1>
-      <p>Booked earnings for 2023</p>
+    <div class="mt-4 earning-total">
+      <h1>$<%=  Booking.total_earnings(@bookings).round(2) %></h1>
+      <p class="earning-description">Booked earnings for 2023</p>
     </div>
-
 
 
 

@@ -1,66 +1,105 @@
-// @media(min-width: 450px) {
-//   li.sticky-notes {
-//     margin: 20px;
-//     background-color: yellow;
-//   }
-
-// }
-
 .container.host {
   padding-top: 15px;
   margin: 0 auto;
   text-align: center;
+}
 
+.host-header {
+  background-color: #e5e2e2e7;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px #585858e7;
+  width: 800px;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
 }
 
 a {
-  color: #3a324a;
-  opacity: 0.7;
-  position: relative;
-  bottom: 20px;
+  color:#555353e7;
+  margin-right: 30px;
   text-decoration: none;
-  transition: 300ms all ease-in-out;
+  padding-top: 3px;
 }
 
 a:hover {
-  color: #31234d;
-  font-size: 25px;
+  color: #272626e7;
 }
 
-.sticky-notepad {
-  margin-top: 20px;
+.booking_link {
+  padding: 5px;
 }
 
-.sticky-notes {
-  display: inline-block;
-  font-weight: 100;
-  font-size: 20px;
-  line-height: 19px;
-  list-style: none;
-  margin: 20px;
-  padding: 50px;
+.host-listing-display {
+  display: flex;
+  position: absolute;
+  top: 115px;
 }
 
-.sn-one {
-  background-color: #DFCCFB;
-  transform: rotate(6deg);
+.card {
+  border-radius: 8px;
+  height: 201px;
+  width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 5px 5px 10px #c5c5c5e7;
 }
 
-.sn-two {
-  background-color: #8EA7E9;
-  transform: rotate(-3deg);
+.card-body {
+  text-align: left;
+  padding-left: 50px;
 }
 
-.sn-three {
-  background-color: #FFD89C;
-  transform: rotate(8deg);
+.card p {
+  font-size: 12px;
+
 }
 
-.fa-paperclip {
-  color: red;
-  position: relative;
-  bottom: 70px;
-  left: 40px;
-  font-size: 50px;
-  transform: rotate(8deg);
+h2 {
+  font-size: 18px;
+  color: #333232;
+  padding-top: 0;
+  margin-top: 0;
+  padding-bottom: 3px;
+  font-weight: bolder;
+}
+
+.listing-image {
+  padding: 0 auto;
+
+}
+
+.listing-image div {
+  margin-left: 0px;
+  padding-left: 0px;
+  object-fit: fill;
+}
+
+@media(max-width: 768px)  {
+  .card {
+    width: 80vw;
+  }
+}
+
+@media(max-width: 576px)  {
+  .card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  li {
+    padding-top: 40px;
+  }
+
+  .card p {
+    font-size: 8px;
+  }
+
+  h2 {
+    font-size: 12px;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 3px;
+  }
 }

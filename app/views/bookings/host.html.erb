@@ -1,37 +1,32 @@
 <div class="container host">
 
-  <div class="navbar host-nav mt-4">
-    <div class="dropdown">
+  <div style="height:5rem; padding-top: 2rem;" class="host-header">
 
-      <button class="btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        All Listings
-      </button>
-      <ul class="dropdown-menu mt-2">
-        <li><a class="dropdown-item" href="#">Confirmed</a></li>
-        <li><a class="dropdown-item" href="#">Pending</a></li>
-        <li><a class="dropdown-item" href="#">Declined</a></li>
-      </ul>
-    </div>
-
-    <button class="btn">
-      <%= link_to "Stats",  stats_bookings_path %>
-    </button>
+    <ul class="host-listing-display">
+      <li>
+        <%= link_to "Listings", host_bookings_path %>
+      </li>
+      <li>
+        <%= link_to "Stats",  stats_bookings_path %>
+      </li>
+    </ul>
   </div>
 
+  <hr>
 
+  <div class="booking_link" style="height:5rem; padding-top: 2rem;">
+    <%= link_to "All", host_bookings_path   %>
+    <%= link_to "Upcoming", host_bookings_path(filter: "upcoming")   %>
+    <%= link_to "Pending", host_bookings_path(filter: "pending")   %>
+  </div>
 
-  <% User.joins(:bookings).joins(:listings).where.not(id: current_user.id).distinct.each do |user| %>
-    <% user.bookings.each do |booking| %>
+  <% @bookings.each do |booking| %>
       <div class="wrapper card mb-3">
         <div class="row g-0">
           <div class="col-4">
-            <%# <div class="image">
-              <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="" class="img-fluid rounded-start">
-            </div> %>
-
-            <div class="test-image">
+            <div class="listing-image rounded">
               <% booking.listing.photos.each do |photo| %>
-                <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+                <div><%= cl_image_tag(photo.key, width: 250, height: 200, crop: :fill) %></div>
               <% end %>
             </div>
           </div>
@@ -39,10 +34,9 @@
           <div class="col-8 mt-3">
             <div class="card-body">
               <h2><%= booking.listing.location %></h2>
-              <p>From: <%= booking.start_date %></p>
-              <p>End: <%= booking.end_date %></p>
-              <h4>Guest: <%= booking.guest.first_name %></h4>
-              <%# <>Status: <%= booking.stats %>
+              <p><%= booking.start_date.strftime("%d %b %Y")%> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+              <p>Guest: <%= booking.guest.first_name %></p>
+
 
               <% if booking.status == "confirmed" %>
                 <p>Status: Confirmed</p>
@@ -55,7 +49,5 @@
           </div>
         </div>
       </div>
-    <% end %>
   <% end %>
-  </div>
 </div>

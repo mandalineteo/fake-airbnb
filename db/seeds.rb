@@ -1,5 +1,6 @@
 require 'faker'
 require "open-uri"
+require 'date'
 
 seed_users = true
 seed_listings = true
