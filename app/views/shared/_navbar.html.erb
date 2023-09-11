@@ -7,9 +7,17 @@
     <% if @show_navbar %>
       <nav class="navbar navbar-light">
         <div class="container-fluid">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-custom-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <form>
+            <%# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-custom-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> %>
+
+            <div class="search-bar border-light d-flex">
+              <div class="piece lighter border-right">Anywhere</div>
+              <div class="piece lighter border-right">Any week</div>
+              <div class="piece gray">Add guests</div>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
           </form>
         </div>
       </nav>
@@ -50,3 +58,104 @@
     </div>
   </div>
 </div>
+
+<%# --------------------------- Search Banner ----------------------------- %>
+<%= form_with url: root_path, method: :get do %>
+
+  <div class="container-fluid">
+    <div class="search-banner border-light d-flex">
+      <div class="piece" style="cursor: pointer">
+        <div class="description border-right">
+          <h1>Where</h1>
+          <input type="string" placeholder="Search destinations"></p>
+
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Search destinations"
+              %>
+
+        </div>
+      </div>
+      <div class="piece" style="cursor: pointer">
+        <div class="description border-right">
+          <h1>Check-in</h1>
+          <p>Add dates</p>
+        </div>
+      </div>
+      <div class="piece" style="cursor: pointer">
+        <div class="description border-right">
+          <h1>Check-out</h1>
+          <p>Add dates</p>
+        </div>
+      </div>
+      <div class="last d-flex piece" style="cursor: pointer">
+        <div class="description">
+          <h1>Who</h1>
+          <p>Add guests</p>
+        </div>
+        <button>
+         <div class="search d-flex">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <p class="white">Search</p>
+        </div>
+        </button>
+
+    </div>
+  </div>
+
+<%# -------------- guests dropdown -----------------  %>
+
+  <div class="container-fluid">
+    <div class="guests">
+
+      <div class="section d-flex border-bottom border-light">
+        <div class="text">
+          <h1>Adults</h1>
+          <p>Ages 13 or above</p>
+        </div>
+        <div class="add-guests d-flex">
+          <i class="fa-solid fa-minus"></i>
+          <%= 'pax' %>
+          <i class="fa-solid fa-plus"></i>
+        </div>
+      </div>
+
+      <div class="section d-flex border-bottom border-light">
+        <div class="text">
+          <h1>Adults</h1>
+          <p>Ages 13 or above</p>
+        </div>
+        <div class="add-guests d-flex">
+          <i class="fa-solid fa-minus"></i>
+          <%= 'pax' %>
+          <i class="fa-solid fa-plus"></i>
+        </div>
+      </div>
+
+      <div class="section d-flex border-bottom border-light">
+        <div class="text">
+          <h1>Adults</h1>
+          <p>Ages 13 or above</p>
+        </div>
+        <div class="add-guests d-flex">
+          <i class="fa-solid fa-minus"></i>
+          <%= 'pax' %>
+          <i class="fa-solid fa-plus"></i>
+        </div>
+      </div>
+
+      <div class="section d-flex">
+        <div class="text">
+          <h1>Adults</h1>
+          <p>Ages 13 or above</p>
+        </div>
+        <div class="add-guests d-flex">
+          <i class="fa-solid fa-minus"></i>
+          <%= 'pax' %>
+          <i class="fa-solid fa-plus"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

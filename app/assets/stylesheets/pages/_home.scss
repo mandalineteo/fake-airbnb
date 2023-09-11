@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+body {
+  background-color: white;
+}
+
 .background {
   background-color: #FFFFFF;
 }
@@ -37,7 +41,10 @@
   border: none;
   background-color: #FFFFFF;
   font-size: 1rem;
-
+  a {
+    text-decoration: none;
+    color: black;
+  }
   // .carousel-slide {
   //   position: relative;
   // }
@@ -81,6 +88,7 @@
 
   h1, p {
     font-size: 1rem;
+    text-decoration: none;
   }
 
   h1 {
