@@ -1,0 +1,83 @@
+  <% start_date = params[:start_date] || @start_date %>
+  <% end_date = params[:end_date] || @end_date %>
+  <% guests = params[:guests] || @total_guests %>
+
+  <div class="d-flex mt-5 ms-4 align-items-center">
+    <%= link_to "<", listing_path(@listing), class:"text-custom-large" %>
+    <h1 class="ms-4 mb-0">
+      Confirm and pay
+    </h1>
+  </div>
+  <% if @errors.present? %>
+    <div class="alert alert-danger">
+      <%= @errors %>
+    </div>
+  <% end %>
+<div class="container">
+  <div>
+    <h4 class="mb-3">
+      Your trips
+    </h4>
+      <div class="my-2">
+        <p class="fw-bolder price-breakdown">Dates</p>
+        <p class="price-breakdown">
+          <%= Date.parse(start_date).strftime('%d %B %Y')%>
+          to
+          <%= Date.parse(end_date).strftime('%d %B %Y')%>
+        </p>
+      </div>
+      <div class="mb-5">
+        <p class="fw-bolder price-breakdown">Guests</p>
+        <p class="price-breakdown">
+           <%=  guests %>
+        </p>
+      </div>
+  </div>
+  <hr>
+  <div>
+    <h3>Pay with</h3>
+    <form>
+      <select class="form-select mb-3" aria-label="Default select example" required>
+        <option value="1">Credit or Debit Card</option>
+        <option value="2">PayPal</option>
+        <option value="3">Google Pay</option>
+      </select>
+      <div class="mb-3">
+        <label for="creditcardnumber" class="form-label">Card number</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-5">
+        <label for="exampleInputPassword1" class="form-label">Postcode</label>
+        <input type="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <hr>
+      <div class="my-4">
+        <h2>Cancellation Policy</h2>
+        <p><strong>Free cancellation before 3.00pm on <%= (Date.parse(start_date) - 5.days).strftime('%d %B %Y') %>.</strong>
+        <br>Cancel before check-in on <%= Date.parse(start_date).strftime('%d %B %Y')%> for a partial refund.
+        </p>
+      </div>
+      <hr>
+      <div class="mb-4">
+        <h2>Ground rules</h2>
+        <p>We ask every guest to remember a few simple things about what makes a great guest.</p>
+        <ul>
+          <li>Follow the house rules</li>
+          <li>Treat your Host's home like your own</li>
+        </ul>
+      </div>
+      <hr>
+      <p class="smallest-text mb-4">By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy and that Airbnb can charge my payment method if I’m responsible for damage.</p>
+
+       <%# hidden input field date_start %>
+      <%# hidden input field date_end %>
+    </form>
+      <%= simple_form_for([@listing, @booking]) do |f| %>
+        <%= f.input :start_date, html5: true, input_html: {value: Date.parse(start_date) }, as: :hidden %>
+        <%= f.input :end_date, html5: true, input_html: {value: Date.parse(end_date) }, as: :hidden  %>
+        <%= f.input :total_guests, input_html: {value: guests }, as: :hidden %>
+        <%= f.input :status, input_html: {value: "pending"}, as: :hidden %>
+        <%= f.submit "Confirm and pay", class:"btn btn-custom btn-lg mb-5"%>
+      <% end %>
+  </div>
+</div>
