@@ -1,12 +1,19 @@
- <div class="carousel-inner">
-     <% @listing.photos.each do |photo| %>
+<% photos = listing.photos.first(5) %>
 
-      <div class="carousel-item ">
-        <%# <img src="" class="d-block w-100" alt="..."> %>
-         <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        <i class="fa-regular fa-heart"></i>
-      </div>
+<div class="row">
 
-    <% end %>
-
+  <div class="col-6 p-2 g-col-6 rounded-start-5">
+    <%= cl_image_tag photos.shift.key, width: 300, height: 410, class: 'd-block w-100 rounded' %>
   </div>
+
+  <div class="col-6 p-2 g-col-6 pt-1">
+    <div class="row">
+      <% photos.each do |photo| %>
+        <div class="col-6 g-1 pb-1">
+          <%= cl_image_tag photo.key, width: 300, height: 200, class: 'd-block w-100 rounded' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

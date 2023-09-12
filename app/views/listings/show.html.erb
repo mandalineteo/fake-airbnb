@@ -1,9 +1,15 @@
 <div class="container my-3">
   <h2><%= @listing.name %></h1>
   <p><%= @listing.location %></p>
-  <% @listing.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
+
+  <%= render 'show-carousel', listing: @listing %>
+
+  <%# <% @listing.photos.each do |photo| %>
+    <%# <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <%# <% end %>
+
+
+
   <div class="mt-5">
     <div class="container d-flex align-items-start">
       <div class="col-md-7 me-5">
@@ -102,5 +108,3 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
 </div>
-
-<%# test render image %>
