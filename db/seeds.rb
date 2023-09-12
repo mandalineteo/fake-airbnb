@@ -9,7 +9,7 @@ seed_listings = true
 seed_bookings = true
 seed_unavailable_dates = true
 
-# -----------------------------------------
+# ------------------------------------------
 
 puts "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 puts "   Take note: this file could take up "
