@@ -101,7 +101,7 @@ if seed_listings
 end
 
 
-# ------------------------------------------
+# ------------------------------------
 
 if seed_bookings
   puts "\n\n===== Create Bookings =====\n"
