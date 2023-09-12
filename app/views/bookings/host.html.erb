@@ -1,15 +1,14 @@
 <div class="container host">
 
   <div style="height:5rem; padding-top: 2rem;" class="host-header">
-
-    <ul class="host-listing-display">
-      <li>
+     <div class="host-listing-display">
+      <p>
         <%= link_to "Listings", host_bookings_path, style:"font-weight: #{current_page?(host_bookings_path) ? 'bold' : 'normal'}" %>
-      </li>
-      <li>
+      </p>
+      <p>
         <%= link_to "Stats",  stats_bookings_path, style:"font-weight: #{current_page?(stats_bookings_path) ? 'bold' : 'normal'}" %>
-      </li>
-    </ul>
+      </p>
+    </div>
   </div>
 
   <hr>
@@ -45,10 +44,10 @@
                 <p data-approve-booking-target="status">Status: Pending</p>
                 <div style="display:flex">
                   <%= form_with url: confirm_booking_path(booking), method: :patch, data: { action: "submit->approve-booking#submit"} do |f|%>
-                    <%= submit_tag "Confirm", class: "btn btn-sm btn-success", data: {"approve-booking-target": "submit"} %>
+                    <%= submit_tag "Confirm", class: "btn btn-sm accept-decline-btn", data: {"approve-booking-target": "submit"} %>
                   <% end %>
                   <%= form_with url: decline_booking_path(booking), method: :patch, data: {action: "submit->approve-booking#decline"} do |f|%>
-                    <%= submit_tag "Decline", class: "btn btn-sm btn-danger", data: {"approve-booking-target": "decline"} %>
+                    <%= submit_tag "Decline", class: "btn btn-sm accept-decline-btn", data: {"approve-booking-target": "decline"} %>
                   <% end %>
                   </div>
                 <% end %>
