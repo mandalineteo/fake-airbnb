@@ -1,0 +1,106 @@
+.container.host {
+  padding-top: 15px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.host-header {
+  background-color: #e5e2e2e7;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px #585858e7;
+  width: 800px;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color:#555353e7;
+  margin-right: 30px;
+  text-decoration: none;
+  padding-top: 3px;
+}
+
+a:hover {
+  color: #272626e7;
+}
+
+.booking_link {
+  padding: 5px;
+}
+
+.host-listing-display {
+  display: flex;
+  position: absolute;
+  top: 115px;
+}
+
+.card {
+  border-radius: 8px;
+  padding: 0;
+  width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 5px 5px 10px #c5c5c5e7;
+}
+
+.card-body {
+  text-align: left;
+  padding-left: 50px;
+}
+
+.card p {
+  font-size: 12px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #333232;
+  padding-top: 0;
+  margin-top: 0;
+  padding-bottom: 3px;
+  font-weight: bolder;
+}
+
+.listing-image div {
+  padding-left: 0;
+}
+
+.listing-image img {
+  position: relative;
+  right: 10px;
+  padding-right: 30px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-position: center;
+}
+
+@media(max-width: 768px)  {
+  .card {
+    width: 80vw;
+  }
+}
+
+@media(max-width: 576px)  {
+  .card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  li {
+    padding-top: 40px;
+  }
+
+  .card p {
+    font-size: 8px;
+  }
+
+  h2 {
+    font-size: 12px;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 3px;
+  }
+}

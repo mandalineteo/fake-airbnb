@@ -4,12 +4,28 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {
     price: Number,
-
+    cleaningFee: Number,
+    serviceFee: Number,
   }
 
+  static targets = [
+    'datepicker',
+    'startDate',
+    'endDate',
+    'submit',
+    'startDateInput',
+    'endDateInput',
+    'totalNights',
+    'totalNightsPrice',
+    'totalPrice',
+    'freeCancellation'
+  ]
+
   connect() {
+    const setDates = this.setDates.bind(this)
+
     this.picker = new easepick.create({
-      element: document.getElementById('datepicker'),
+      element: this.datepickerTarget,
       css: [
         'https://cdn.jsdelivr.net/npm/@easepick/core@1.2.1/dist/index.css',
         'https://cdn.jsdelivr.net/npm/@easepick/range-plugin@1.2.1/dist/index.css',
@@ -19,44 +35,60 @@ export default class extends Controller {
         tooltip: true,
       },
       setup(picker) {
-        picker.on("select", (e)=>{
-          function convertDate(date) {
-            var yyyy = date.getFullYear().toString();
-            var mm = (date.getMonth()+1).toString();
-            var dd  = date.getDate().toString();
-
-            var mmChars = mm.split('');
-            var ddChars = dd.split('');
-
-            return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
-          }
-
-
-          console.log(e.detail)
-
-          document.querySelector("#start_date").value = convertDate(e.detail.start)
-          document.querySelector("#end_date").value = convertDate(e.detail.end)
-
-          let start_date = convertDate(e.detail.start)
-          let end_date = convertDate(e.detail.end)
-
-          document.querySelector("#start_date_display").innerHTML = convertDate(e.detail.start)
-          document.querySelector("#end_date_display").innerHTML = convertDate(e.detail.end)
-
-          let number_of_nights = ((e.detail.end - e.detail.start)/ (1000 * 3600 *24))
-          console.log(number_of_nights)
-
-
-          document.querySelector("#no_of_nights").innerText = ` X ${number_of_nights} nights`
-          let price = Number(document.querySelector('[data-datepicker-price-value]').dataset.datepickerPriceValue)
-          let total_price = number_of_nights * price
-          document.querySelector("#total_nights_price").innerText = `$${total_price} SGD`
-          document.querySelector("#total_price").innerText = `$${total_price + 26 + 73} SGD`
-          document.querySelector("#reserve").disabled = false;
-          document.querySelector("#partial-cancellation-date").innerHTML = `${start_date}`
-        })
+        picker.on("select", setDates)
       }
     });
+  }
+
+  setDates(e) {
+    const endDate = (this.convertDate(e.detail.end))
+    const startDate = (this.convertDate(e.detail.start))
+    const number_of_nights = ((e.detail.end - e.detail.start)/ (1000 * 3600 * 24))
+    const totalNightPrice = number_of_nights * this.priceValue
+
+    this.startDateTarget.innerHTML = startDate
+    this.endDateTarget.innerHTML = endDate
+
+    this.startDateInputTarget.value = startDate
+    this.endDateInputTarget.value = endDate
+    // this.freeCancellationTarget.value = `
+    // <i class="fa-regular fa-calendar"></i>
+    // <div class="ms-2">
+    //   <p class="listing-general-details-title my-0">Free cancellation before ${this.startDate}</p>
+    // </div>`
+
+    this.submitTarget.disabled = false;
+
+    this.totalNightsPriceTarget.innerText = `$${totalNightPrice} SGD`;
+    this.totalPriceTarget.innerText = `$${(totalNightPrice + this.cleaningFeeValue + this.serviceFeeValue).toFixed(2)} SGD`
+
+    // let start_date = this.convertDate(e.detail.start)
+    // let end_date = this.convertDate(e.detail.end)
+
+    // document.querySelector("#start_date_display").innerHTML = this.convertDate(e.detail.start)
+    // document.querySelector("#end_date_display").innerHTML = this.convertDate(e.detail.end)
+
+    // console.log(number_of_nights)
+
+
+    this.totalNightsTarget.innerText = ` X ${number_of_nights} nights`
+    this.freeCancellationTarget.innerHTML = freeCancellationHTML;
+    // let price = Number(document.querySelector('[data-datepicker-price-value]').dataset.datepickerPriceValue)
+    // let total_price = number_of_nights * price
+    // document.querySelector("#total_nights_price").innerText = `$${total_price} SGD`
+    // document.querySelector("#total_price").innerText = `$${total_price + 26 + 73} SGD`
+    // document.querySelector("#partial-cancellation-date").innerHTML = `${start_date}`
+  }
+
+  convertDate(date) {
+    var yyyy = date.getFullYear().toString();
+    var mm = (date.getMonth()+1).toString();
+    var dd  = date.getDate().toString();
+
+    var mmChars = mm.split('');
+    var ddChars = dd.split('');
+
+    return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
   }
 
    open() {
