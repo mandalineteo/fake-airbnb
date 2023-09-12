@@ -1,159 +1,67 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon border-bottom">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "airbnb-logo.png" %>
-    <% end %>
+<div class="position-relative" data-controller="search-filter">
 
-    <% if @show_navbar %>
-      <nav class="navbar navbar-light">
-        <div class="container-fluid">
-          <form>
-            <%# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-custom-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> %>
-
-            <div class="search-bar border-light d-flex">
-              <div class="piece lighter border-right">Anywhere</div>
-              <div class="piece lighter border-right">Any week</div>
-              <div class="piece gray">Add guests</div>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-
-          </form>
-        </div>
-      </nav>
-    <% end %>
-
-     <% if @show_navbar %>
-      <div>
-        <%= link_to "Airbnb Setup", new_listing_path, class:"btn btn-outline-custom" %>
-      </div>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon border-bottom">
+    <div class="container-fluid">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "airbnb-logo.png" %>
       <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <% if @show_navbar %>
+        <nav class="navbar navbar-light">
+          <div class="container-fluid">
+            <form>
+              <%# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-custom-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> %>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Bookings", bookings_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Host Bookings", host_bookings_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
+              <div data-action="click->search-filter#appear" class="search-bar border-light d-flex">
+                <div class="piece lighter border-right">Anywhere</div>
+                <div class="piece lighter border-right">Any week</div>
+                <div class="piece gray">Add guests</div>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+
+            </form>
+          </div>
+        </nav>
+      <% end %>
+
+      <% if @show_navbar %>
+        <div>
+          <%= link_to "Airbnb Setup", new_listing_path, class:"btn btn-outline-custom" %>
+        </div>
         <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
 
-<%# --------------------------- Search Banner ----------------------------- %>
-<%= form_with url: root_path, method: :get do %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="container-fluid">
-    <div class="search-banner border-light d-flex">
-      <div class="piece" style="cursor: pointer">
-        <div class="description border-right">
-          <h1>Where</h1>
-
-            <%= text_field_tag :query,
-                  params[:query],
-                  class: "form-control",
-                  placeholder: "Search destinations"
-              %>
-
-        </div>
-      </div>
-      <div class="piece" style="cursor: pointer">
-        <div class="description border-right">
-          <h1>Check-in</h1>
-          <p>Add dates</p>
-        </div>
-      </div>
-      <div class="piece" style="cursor: pointer">
-        <div class="description border-right">
-          <h1>Check-out</h1>
-          <p>Add dates</p>
-        </div>
-      </div>
-      <div class="last d-flex piece" style="cursor: pointer">
-        <div class="description">
-          <h1>Who</h1>
-          <p>Add guests</p>
-        </div>
-        <button>
-         <div class="search d-flex">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <p class="white">Search</p>
-        </div>
-        </button>
-
-    </div>
-  </div>
-
-<%# -------------- guests dropdown -----------------  %>
-
-  <div class="container-fluid">
-    <div class="guests">
-
-      <div class="section d-flex border-bottom border-light">
-        <div class="text">
-          <h1>Adults</h1>
-          <p>Ages 13 or above</p>
-        </div>
-        <div class="add-guests d-flex">
-          <i class="fa-solid fa-minus"></i>
-          <%= 'pax' %>
-          <i class="fa-solid fa-plus"></i>
-        </div>
-      </div>
-
-      <div class="section d-flex border-bottom border-light">
-        <div class="text">
-          <h1>Adults</h1>
-          <p>Ages 13 or above</p>
-        </div>
-        <div class="add-guests d-flex">
-          <i class="fa-solid fa-minus"></i>
-          <%= 'pax' %>
-          <i class="fa-solid fa-plus"></i>
-        </div>
-      </div>
-
-      <div class="section d-flex border-bottom border-light">
-        <div class="text">
-          <h1>Adults</h1>
-          <p>Ages 13 or above</p>
-        </div>
-        <div class="add-guests d-flex">
-          <i class="fa-solid fa-minus"></i>
-          <%= 'pax' %>
-          <i class="fa-solid fa-plus"></i>
-        </div>
-      </div>
-
-      <div class="section d-flex">
-        <div class="text">
-          <h1>Adults</h1>
-          <p>Ages 13 or above</p>
-        </div>
-        <div class="add-guests d-flex">
-          <i class="fa-solid fa-minus"></i>
-          <%= 'pax' %>
-          <i class="fa-solid fa-plus"></i>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Bookings", bookings_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item dropdown">
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "Host Bookings", host_bookings_path, class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
+
   </div>
+
+<% if @show_navbar %>
+  <%= render 'search-filter' %>
 <% end %>
+</div>

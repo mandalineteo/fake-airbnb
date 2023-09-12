@@ -1,0 +1,141 @@
+<%# --------------------------- Search Banner ----------------------------- %>
+<div class='search-overlay d-none' data-search-filter-target="banner"data-controller="guest-number">
+  <%= form_with url: root_path, method: :get do %>
+
+   <div class="container-fluid">
+      <div class="search-banner border-light d-flex">
+        <div class="piece" style="cursor: pointer">
+          <div class="description border-right">
+            <h1 class="h1 search-filter">Where</h1>
+
+              <%= text_field_tag :location,
+                    params[:location],
+                    class: "form-control search-location",
+                    placeholder: "Search destinations"
+                %>
+
+          </div>
+        </div>
+        <div class="piece" style="cursor: pointer">
+          <div class="description border-right">
+            <h1 class="h1 search-filter">Check-in</h1>
+            <p class="p search-filter">Add dates</p>
+          </div>
+        </div>
+        <div class="piece" style="cursor: pointer">
+          <div class="description border-right">
+            <h1 class="h1 search-filter">Check-out</h1>
+            <p class="p search-filter">Add dates</p>
+          </div>
+        </div>
+        <div class="last d-flex piece" data-action="click->guest-number#drop" style="cursor: pointer">
+          <div class="description">
+            <h1 class="h1 search-filter">Who</h1>
+            <p class="p search-filter">Add guests</p>
+          </div>
+          <button>
+          <div class="search d-flex">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <p class="p white">Search</p>
+          </div>
+          </button>
+      </div>
+    </div>
+
+  <%# -------------- guests dropdown -----------------  %>
+
+    <div class="container-fluid d-flex">
+      <div class="guests d-none" data-guest-number-target="dropdown">
+
+        <div class="section d-flex border-bottom border-light">
+          <div class="text">
+            <h1 class="h1 search-filter">Adults</h1>
+            <p class="p search-filter">Ages 13 or above</p>
+          </div>
+          <div class="add-guests d-flex">
+            <i data-action="click->guest-number#minus" class="fa-solid fa-minus"></i>
+            <%= hidden_field_tag :guests,
+                  params[:guests],
+                  class: "form-control search-guests",
+                  value: 0,
+                  data: {
+                    guest_number_target: "paxInput"
+                  }
+              %>
+            <p data-guest-number-target="pax" class="pax">0</p>
+            <i data-action="click->guest-number#add" data-action="click->guest-number#add" class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+
+        <div class="section d-flex border-bottom border-light">
+          <div class="text">
+            <h1 class="h1 search-filter">Children</h1>
+            <p class="p search-filter">Ages 2-12</p>
+          </div>
+          <div class="add-guests d-flex">
+            <i data-action="click->guest-number#minus" class="fa-solid fa-minus"></i>
+            <p data-guest-number-target="pax" class="pax">0</p>
+            <i data-action="click->guest-number#add" class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+
+        <div class="section d-flex border-bottom border-light">
+          <div class="text">
+            <h1 class="h1 search-filter">Infants</h1>
+            <p class="p search-filter">Under 2</p>
+          </div>
+          <div class="add-guests d-flex">
+            <i data-action="click->guest-number#minus" class="fa-solid fa-minus"></i>
+            <p data-guest-number-target="pax" class="pax">0</p>
+            <i data-action="click->guest-number#add" class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+
+        <div class="section d-flex">
+          <div class="text">
+            <h1 class="h1 search-filter">Pets</h1>
+            <p class="p search-filter animal">Bringing a service animal?</p>
+          </div>
+          <div class="add-guests d-flex">
+            <i data-action="click->guest-number#minus" class="fa-solid fa-minus"></i>
+            <p data-guest-number-target="pax" class="pax">0</p>
+            <i data-action="click->guest-number#add" class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <%# -------------- dates dropdown -----------------  %>
+
+    <div class="d-none">
+      <div class="datepicker">
+        <div data-action="click->datepicker#open" style="padding-left: 8px; border-right: solid black; border-width: 1px; width: 50%;">
+          <small>CHECK-IN</small><br>
+          <p data-datepicker-target="startDate"><small style="color: grey">Add Date</small></p>
+        </div>
+        <div data-action="click->datepicker#open" style="padding-left: 8px;">
+          <small>CHECK-OUT</small><br>
+              <p data-datepicker-target="endDate"><small style="color: grey">Add Date</small></p>
+        </div>
+      </div>
+
+      <input data-datepicker-target="datepicker"/>
+        <%# <%= form_with url:new_listing_booking_path(@listing), method: "get" do |form| %>
+        <%# <%= form.date_field :start_date, style: "display: none", data: {
+          datepicker_target: 'startDateInput'
+        } %>
+        <%# <%= form.date_field :end_date, style: "display: none", data: { %>
+          <%# datepicker_target: 'endDateInput' %>
+        <%# } %>
+
+        <%# <%= form.label :guests, "NUMBER OF GUESTS", class:"smallest-text" %>
+        <%# <%= form.number_field :total_guests, class: "form-control datepicker mb-3 mt-0", max: @listing.max_guests, required: true %>
+        <%# <%= form.submit "Reserve", id: "reserve", class:"btn btn-custom btn-large", style: "width: 100%", disabled: true, data: { %>
+          <%# datepicker_target: 'submit' %>
+        <%# } %>
+      <%# <% end %>
+    </div>
+
+  <% end %>
+</div>

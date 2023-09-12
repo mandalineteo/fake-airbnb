@@ -1,0 +1,154 @@
+// // ---------------- search bar ----------------
+
+// .search-bar {
+//   border: solid;
+//   border-radius: 1000px;
+//   box-shadow: 2px 2px 2px rgb(188, 188, 188);
+//   padding: 0.3rem;
+//   padding-left: .8rem;
+
+//   .piece {
+//     border: none;
+//     background-color: white;
+//     margin: auto;
+//     padding: 0 0.4rem;
+//   }
+
+//   .border-right {
+//     border-right: solid $light-gray;
+//   }
+
+//   .light {
+//     color: $light-gray;
+//   }
+
+//   i {
+//     vertical-align: auto;
+//     color: white;
+//     background-color: $airbnb-red;
+//     padding: 0.8rem;
+//     border-radius: 50%;
+//   }
+
+//   .gray {
+//     color:gray;
+//   }
+
+// }
+
+// .h1.search-filter {
+//   font-size: .9rem;
+//   font-weight: bold;
+//   margin-bottom: 0.1rem;
+// }
+
+// .p.search-filter {
+//   color: rgb(161, 161, 161);
+//   margin-bottom: 0;
+// }
+
+// // ---------------- search banner -----------------
+
+.search-banner {
+  border: solid;
+  border-radius: 1000px;
+  box-shadow: 2px 2px 2px rgb(188, 188, 188);
+  padding: .3rem;
+  padding-left: .8rem;
+  background-color: $light-gray;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto 0.5rem;
+
+
+  .piece {
+    border: none;
+    padding: 0 0.6rem 0 0.1rem;
+    margin: auto 0;
+    flex-grow: 1;
+    background-color: $light-gray;
+    border-radius: 1000px;
+
+    &:last-child {
+      .description {
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .border-right {
+    border-right: solid rgb(218, 215, 215);
+  }
+
+  .description {
+    text-align: start;
+    margin: auto 0.5rem;
+  }
+
+
+  i {
+    vertical-align: auto;
+    color: white;
+    background-color: $airbnb-red;
+    padding: 0.8rem;
+    border-radius: 50%;
+  }
+
+  button {
+    background-color: $airbnb-red;
+    border-radius: 1000px;
+    border: none;
+  }
+
+  .search {
+    padding: .5rem;
+    border-radius: 1000px;
+
+    p {
+      margin: auto;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .white {
+    color: white;
+  }
+}
+
+.search-location {
+  border: none;
+  padding: 0.1rem;
+}
+
+// -------------- guests dropdown ----------------- //
+.guests {
+  width: 400px;
+  border: solid $light-gray;
+  padding: 1rem;
+  border-radius: 20px;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  .section {
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+  }
+
+  .add-guests {
+    margin: auto .5rem;
+  }
+
+  i {
+    color: gray;
+    margin: auto .4rem;
+    border: solid gray;
+    border-radius: 50%;
+    border-width: 1px;
+    padding: 0.5rem;
+    font-size: 0.6rem;
+  }
+}
+.pax {
+  margin-bottom: 0;
+}
