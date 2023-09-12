@@ -1,0 +1,12 @@
+ <div class="carousel-inner">
+     <% @listing.photos.each do |photo| %>
+
+      <div class="carousel-item ">
+        <%# <img src="" class="d-block w-100" alt="..."> %>
+         <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        <i class="fa-regular fa-heart"></i>
+      </div>
+
+    <% end %>
+
+  </div>
