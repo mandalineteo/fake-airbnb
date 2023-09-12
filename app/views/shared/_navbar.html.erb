@@ -23,13 +23,11 @@
             </form>
           </div>
         </nav>
-      <% end %>
 
-      <% if @show_navbar %>
         <div>
           <%= link_to "Airbnb Setup", new_listing_path, class:"btn btn-outline-custom" %>
         </div>
-        <% end %>
+      <% end %>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -61,7 +59,6 @@
 
   </div>
 
-<% if @show_navbar %>
-  <%= render 'search-filter' %>
-<% end %>
+
+  <%= render 'listings/search-filter' %>
 </div>
