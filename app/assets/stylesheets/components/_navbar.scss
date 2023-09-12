@@ -53,8 +53,10 @@
   .gray {
     color:gray;
   }
+
 }
 
+/* TODO: do not update global selectors!!!!!!!!! */
 h1 {
   font-size: .9rem;
   font-weight: bold;
@@ -65,6 +67,7 @@ p {
   // color: rgb(161, 161, 161); -> possible to make this into an id/class rather than a general p tag
   margin-bottom: 0;
 }
+
 
 // ---------------- search banner -----------------
 
@@ -86,6 +89,13 @@ p {
     flex-grow: 1;
     background-color: $light-gray;
     border-radius: 1000px;
+
+    &:last-child {
+      .description {
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+    }
   }
 
   .border-right {
@@ -97,12 +107,6 @@ p {
     margin: auto 0.5rem;
   }
 
-  .last {
-    .description {
-      flex-grow: 1;
-      justify-content: space-between;
-    }
-  }
 
   i {
     vertical-align: auto;
