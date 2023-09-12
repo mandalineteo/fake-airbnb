@@ -51,6 +51,7 @@
           data-datepicker-price-value="<%= @listing.price_per_night %>"
           data-datepicker-cleaning-fee-value="26"
           data-datepicker-service-fee-value="73"
+          data-datepicker-unavailable-dates-value="<%= @unavailable_dates %>"
           >
           <div class="d-flex mb-3">
             <h3 class="fw-bolder mb-0 me-2"><%= "$#{@listing.price_per_night} SGD" %></h3>
@@ -80,7 +81,7 @@
                   } %>
 
                   <%= form.label :guests, "NUMBER OF GUESTS", class:"smallest-text" %>
-                  <%= form.number_field :guests, class: "form-control datepicker mb-3 mt-0", max: @listing.max_guests, required: true %>
+                  <%= form.number_field :total_guests, class: "form-control datepicker mb-3 mt-0", max: @listing.max_guests, required: true %>
                   <%= form.submit "Reserve", id: "reserve", class:"btn btn-custom btn-large", style: "width: 100%", disabled: true, data: {
                     datepicker_target: 'submit'
                   } %>
