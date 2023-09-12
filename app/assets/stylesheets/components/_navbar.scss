@@ -56,13 +56,13 @@
 }
 
 h1 {
-  font-size: .9rem;
+  font-size: .9rem; //--> could this be more targeted by using an id/ class rather than using the general  tag?
   font-weight: bold;
   margin-bottom: 0.1rem;
 }
 
 p {
-  color: rgb(161, 161, 161);
+  // color: rgb(161, 161, 161); --> could this be more targeted by using an id/ class rather than using the general p tag?
   margin-bottom: 0;
 }
 
