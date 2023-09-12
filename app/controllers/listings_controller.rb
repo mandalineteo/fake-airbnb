@@ -18,6 +18,8 @@ class ListingsController < ApplicationController
       lat: @listing.latitude,
       lng: @listing.longitude
     }
+
+    @unavailable_dates = @listing.booked_dates.to_json
   end
 
   def new
