@@ -2,6 +2,8 @@ require 'faker'
 require "open-uri"
 require 'date'
 
+require_relative 'singapore_addresses'
+
 seed_users = true
 seed_listings = true
 seed_bookings = true
@@ -13,6 +15,7 @@ puts "\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 puts "   Take note: this file could take up "
 puts "   to 5 mins to complete. Blame Ashley."
 puts "   😈😈😈😈😈😈😈😈😈😈😈😈😈😈"
+puts "   ☠️ You have been warned!! ☠️"
 puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n"
 
 
@@ -52,37 +55,48 @@ if seed_listings
 
   puts "creating 5 listings for user 1..."
   5.times do
+    puts '--- creating new listing...'
     listing = Listing.create!(
-      details: Faker::TvShows::HowIMetYourMother.catch_phrase,
-      name: Faker::Games::Pokemon.move,
-      location: Faker::TvShows::Friends.location,
+      name: Faker::Travel::TrainStation.name(region: 'united_states', type: 'metro'),
+      details: "Welcome to #{Faker::Travel::TrainStation.name(region: 'united_states', type: 'metro')}! We have a big #{Faker::House.room} and we are sure that you will enjoy your stay with us!",
+      location: SINGAPORE_ADDRESSES.pop,
       max_guests: Faker::Number.between(from: 1, to: 10),
       price_per_night: Faker::Number.decimal(l_digits: 2),
       host: user1
     )
 
-    image_url = URI.open("https://source.unsplash.com/featured/house&id=#{rand(100000)}")
-    listing.photos.attach(io: image_url, filename: "#{listing.name.split.join('-')}.png", content_type: "image/png")
+    image_source = "https://source.unsplash.com/featured/600x600/?interior%20design&id=#{rand(100000)}"
+    puts '    -- attaching images...'
+    5.times do
+      image_url = URI.open(image_source)
+      listing.photos.attach(io: image_url, filename: "#{listing.name.split.join('-')}.png", content_type: "image/png")
+    end
 
-    puts " --- created #{listing.name}."
+    puts "    -- created #{listing.name}."
 
   end
 
   puts "\ncreating 20 random listings..."
   20.times do
+    puts '--- creating new listing...'
     listing = Listing.create!(
-      details: Faker::TvShows::Friends.quote,
-      name: Faker::Games::Pokemon.move,
-      location: Faker::TvShows::FamilyGuy.location,
+      name: Faker::Travel::TrainStation.name(region: 'united_kingdom', type: 'metro'),
+      details: "Welcome to #{Faker::Travel::TrainStation.name(region: 'united_kingdom', type: 'metro')}! We have a big #{Faker::House.room} and we are sure that you will enjoy your stay with us!",
+      location: SINGAPORE_ADDRESSES.pop,
       max_guests: Faker::Number.between(from: 1, to: 10),
       price_per_night: Faker::Number.decimal(l_digits: 2),
       host: users.sample
     )
 
-    image_url = URI.open("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80")
-    listing.photos.attach(io: image_url, filename: "apartment.png", content_type: "image/png")
+    image_source = "https://source.unsplash.com/featured/600x600/?interior%20design&id=#{rand(100000)}"
+    puts '    -- attaching image...'
+    3.times do
+      image_url = URI.open(image_source)
+      listing.photos.attach(io: image_url, filename: "#{listing.name.split.join('-')}.png", content_type: "image/png")
+    end
 
-    puts " --- created #{listing.name}."
+    puts "    -- created #{listing.name}."
+
   end
 end
 
