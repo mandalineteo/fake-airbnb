@@ -45,7 +45,7 @@
       <p class="my-4"><%= @listing.details %></p>
     </div>
         <div
-          class="listing-card col-md-5 sticky-top"
+          class="listing-payment-details-card col-md-5 sticky-top"
           style="top: 50px"
           data-controller="datepicker"
           data-datepicker-price-value="<%= @listing.price_per_night %>"
@@ -71,7 +71,7 @@
                   </div>
                 </div>
 
-                <input data-datepicker-target="datepicker" style="visibility: hidden"/>
+                <input class="invisible position-absolute" data-datepicker-target="datepicker"/>
                  <%= form_with url:new_listing_booking_path(@listing), method: "get" do |form| %>
                   <%= form.date_field :start_date, style: "display: none", data: {
                     datepicker_target: 'startDateInput'
@@ -102,8 +102,8 @@
             <p><%= "Airbnb service fee" %></p>
             <p><%= "$73 SGD" %></p>
           </div>
-          <hr>
-          <div class="d-flex justify-content-between price-breakdown text-reset">
+
+          <div class="d-flex justify-content-between price-breakdown text-reset border-top mt-3 pt-3">
             <p><strong><%= "Total before taxes" %></strong></p>
             <p data-datepicker-target="totalPrice"><strong></strong></p>
           </div>
