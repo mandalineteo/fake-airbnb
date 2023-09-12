@@ -1,13 +1,25 @@
+$shadow-color: #585858e7;
+$backgroud-color: #e5e2e2e7;
+$font-color: #525151;
+$border-color: #bfbebe;
+$light-shadow-color: #acabab;
+
 .container.host {
   padding-top: 15px;
   margin: 0 auto;
   text-align: center;
 }
 
+// header
 .host-header {
-  background-color: #e5e2e2e7;
+  background-color: $backgroud-color;
   border-radius: 5px;
-  box-shadow: 5px 5px 20px #585858e7;
+  box-shadow: 5px 5px 20px $shadow-color;
+}
+
+// earnings section
+.earning-title, .earning-description, .earning-total {
+  color: $shadow-color;
 }
 
 .earning-title {
@@ -15,20 +27,16 @@
 }
 
 .earning-description {
-  color: #585858e7;
+  // color: $shadow-color;
   margin-top: 10px;
   font-size: 12px;
 }
 
-.earning-title h2 {
-  color: #525151;
-}
-
 .earning-total {
-  border: 1px solid #bfbebe;
+  border: 1px solid $border-color;
   padding-top: 10px;
   padding-left: 8px;
   width: 200px;
   margin: 0 auto;
-  box-shadow: 3px 3px 18px #acabab;
+  box-shadow: 3px 3px 18px $light-shadow-color;
 }

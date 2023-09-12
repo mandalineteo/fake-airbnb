@@ -1,90 +1,133 @@
+$airbnbred: #DB0F63;
+$airbnbwhite: #ffffff;
+$backgroud-color: #e5e2e2e7;
+$headershadow: #585858e7;
+$shadow: #c5c5c5e7;
+$linkcolor: #555353e7;
+$linkhover: #272626e7;
+$text-color: #525151;
+$border-radius: 8px;
+$margin-ten: 10px;
+
+
 .container.host {
   padding-top: 15px;
   margin: 0 auto;
   text-align: center;
 }
 
+// header: listing || stats
 .host-header {
-  background-color: #e5e2e2e7;
-  border-radius: 5px;
-  box-shadow: 5px 5px 20px #585858e7;
-  width: 800px;
+  background-color: $backgroud-color;
+  border-radius: $border-radius;
+  box-shadow: 5px 5px 20px $headershadow;
+  width: 70%;
   margin: 0 auto;
+
+  .host-listing-display {
+    display: flex;
+    position: absolute;
+    top: 115px;
+    color: $linkcolor;
+  }
 }
 
-li {
-  list-style: none;
-}
-
+// text-color: listings & stats || all, upcoming, pending, lifetime, current year, current month
 a {
-  color:#555353e7;
+  color:$linkcolor;
   margin-right: 30px;
   text-decoration: none;
-  padding-top: 3px;
+  padding-top: 5px;
+
+  &:hover {
+    color: $linkhover;
+  }
 }
 
-a:hover {
-  color: #272626e7;
-}
-
+// padding for lifetime, current year, current month
 .booking_link {
   padding: 5px;
 }
 
-.host-listing-display {
-  display: flex;
-  position: absolute;
-  top: 115px;
-}
-
+// display cards - wrapper section
 .wrapper {
-  border-radius: 8px;
+  border-radius: $border-radius;
   padding: 0;
   width: 800px;
   margin: 0 auto;
-  background-color: white;
-  box-shadow: 5px 5px 10px #c5c5c5e7;
+  background-color: $airbnbwhite;
+  box-shadow: 5px 5px 10px $shadow;
+
+  // images
+  .listing-image img {
+    padding-left: 0;
+    position: relative;
+    right: 10px;
+    padding-right: 30px;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    background-position: center;
+  }
+
+  .card-body {
+    text-align: left;
+    padding-left: 50px;
+  }
+
+  // location
+  h2 {
+    font-size: 18px;
+    color: $text-color;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 5px;
+    font-weight: bolder;
+  }
+
+  // date, guest, status
+  .wrapper p {
+    font-size: 12px;
+    color: $text-color;
+  }
 }
 
-.card-body {
-  text-align: left;
-  padding-left: 50px;
-}
+// accept-decline button
+.accept-decline-btn {
+  margin-top: $margin-ten;
+  margin-right: $margin-ten;
+  background-color: $airbnbred;
+  border-radius: $border-radius;
+  color: $airbnbwhite;
+  transition: 300ms all ease-in-out;
 
-.card p {
-  font-size: 12px;
+  &:hover {
+    background-color: $airbnbwhite;
+    border: 1px solid $airbnbred;
+    color: $airbnbred;
+  }
 }
+@media(max-width: 992px) {
+  .host-header {
+    width: 100%;
+  }
 
-h2 {
-  font-size: 18px;
-  color: #333232;
-  padding-top: 0;
-  margin-top: 0;
-  padding-bottom: 3px;
-  font-weight: bolder;
-}
-
-.listing-image div {
-  padding-left: 0;
-}
-
-.listing-image img {
-  position: relative;
-  right: 10px;
-  padding-right: 30px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  background-position: center;
+  .wrapper {
+    width: 100%;
+  }
 }
 
 @media(max-width: 768px)  {
-  .card {
+  .wrapper {
     width: 80vw;
+  }
+
+  .host-header {
+    width: 100%;
   }
 }
 
 @media(max-width: 576px)  {
-  .card img {
+  .wrapper img {
     width: 120px;
     height: 120px;
   }
@@ -93,14 +136,30 @@ h2 {
     padding-top: 40px;
   }
 
-  .card p {
-    font-size: 8px;
-  }
-
   h2 {
     font-size: 12px;
     padding-top: 0;
     margin-top: 0;
     padding-bottom: 3px;
+  }
+
+  .wrapper p {
+    font-size: $border-radius;
+  }
+}
+
+@media(max-width: 345px)  {
+  .wrapper {
+    width: 100%;
+  }
+
+  .card-body {
+   padding-top: 0px;
+   padding-left: 10px;
+   margin-top: 0px;
+  }
+
+  .host-header {
+    width: 100%;
   }
 }
