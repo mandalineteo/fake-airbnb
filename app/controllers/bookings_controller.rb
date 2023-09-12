@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new create]
   before_action :set_listing, only: %i[show]
-  
+
   def index
   end
 
@@ -15,7 +14,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.guest = current_user
     @booking.listing = @listing
+
     if @booking.save
+      # unavailable_dates_range = (@booking.start_date..@booking.end_date).to_a.flatten
+      # @unavailable_dates = unavailable_dates_range.to_json
       redirect_to bookings_path
     else
       @start_date = booking_params[:start_date]

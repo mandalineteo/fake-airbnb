@@ -6,4 +6,11 @@ class Listing < ApplicationRecord
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+
+  def booked_dates
+    dates = bookings.map do |booking|
+      (booking.start_date..booking.end_date).to_a
+    end
+    dates.flatten
+  end
 end
