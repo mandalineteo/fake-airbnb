@@ -38,13 +38,17 @@
     <h3>Pay with</h3>
     <form>
       <select class="form-select mb-3" aria-label="Default select example" required>
-        <option value="1">Credit or Debit Card</option>
-        <option value="2">PayPal</option>
-        <option value="3">Google Pay</option>
+        <option value="credit-card">Credit or Debit Card</option>
+        <option value="paypal">PayPal</option>
+        <option value="gpay">Google Pay</option>
       </select>
       <div class="mb-3">
         <label for="creditcardnumber" class="form-label">Card number</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group mb-3">
+        <label for="password">CVC</label>
+        <input type="password" class="form-control" id="password">
       </div>
       <div class="mb-5">
         <label for="exampleInputPassword1" class="form-label">Postcode</label>
