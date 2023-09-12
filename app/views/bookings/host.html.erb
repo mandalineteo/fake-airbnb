@@ -23,9 +23,8 @@
       <div class="wrapper card mb-3">
         <div class="row g-0">
           <div class="col-4">
-            <% booking.listing.photos.each do |photo| %>
-              <div class="listing-image"><%= cl_image_tag(photo.key, width: 250, height: "240", crop: :fill) %></div>
-            <% end %>
+            <%= cl_image_tag(booking.listing.photos.first.key, width: 250, height: "240", crop: :fill) %>
+
           </div>
 
           <div class="col-8 mt-3">
