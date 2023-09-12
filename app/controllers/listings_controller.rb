@@ -8,9 +8,9 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
-    if params[:query].present?
-      @listings = @listings.where("location ILIKE ?", "%#{params[:query]}%")
-    end
+
+    @listings = filter_by_location(@listings) if params[:location].present?
+    @listings = filter_by_guests(@listings) if params[:guests].present?
   end
 
   def show
@@ -48,5 +48,13 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:name, :details, :location, :max_guests, :price_per_night, photos: [])
+  end
+
+  def filter_by_location(listings)
+    listings.where("location ILIKE ?", "%#{params[:location]}%")
+  end
+
+  def filter_by_guests(listings)
+    listings.where("max_guests >= #{params[:guests]}")
   end
 end

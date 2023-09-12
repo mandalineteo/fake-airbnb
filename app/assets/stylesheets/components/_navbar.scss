@@ -20,6 +20,8 @@
   background: $airbnb-red;
 }
 
+// ---------------- search bar ----------------
+
 .search-bar {
   border: solid;
   border-radius: 1000px;
@@ -56,110 +58,127 @@
 
 }
 
-/* TODO: do not update global selectors!!!!!!!!! */
-h1 {
+.h1.search-filter {
   font-size: .9rem;
   font-weight: bold;
   margin-bottom: 0.1rem;
 }
 
-p {
-  // color: rgb(161, 161, 161); -> possible to make this into an id/class rather than a general p tag
+.p.search-filter {
+  color: rgb(161, 161, 161);
   margin-bottom: 0;
 }
 
+// // ---------------- search banner -----------------
 
-// ---------------- search banner -----------------
+// .search-banner {
+//   border: solid;
+//   border-radius: 1000px;
+//   box-shadow: 2px 2px 2px rgb(188, 188, 188);
+//   padding: .3rem;
+//   padding-left: .8rem;
+//   background-color: $light-gray;
+//   justify-content: space-between;
+//   max-width: 900px;
+//   margin: 1rem auto;
 
-.search-banner {
-  border: solid;
-  border-radius: 1000px;
-  box-shadow: 2px 2px 2px rgb(188, 188, 188);
-  padding: .3rem;
-  padding-left: .8rem;
-  background-color: $light-gray;
-  justify-content: space-between;
-  max-width: 900px;
-  margin: 1rem auto;
+//   .piece {
+//     border: none;
+//     padding: 0 0.6rem 0 0.1rem;
+//     margin: auto 0;
+//     flex-grow: 1;
+//     background-color: $light-gray;
+//     border-radius: 1000px;
 
-  .piece {
-    border: none;
-    padding: 0 0.6rem 0 0.1rem;
-    margin: auto 0;
-    flex-grow: 1;
-    background-color: $light-gray;
-    border-radius: 1000px;
+//     &:last-child {
+//       .description {
+//         flex-grow: 1;
+//         justify-content: space-between;
+//       }
+//     }
+//   }
 
-    &:last-child {
-      .description {
-        flex-grow: 1;
-        justify-content: space-between;
-      }
-    }
-  }
+//   .border-right {
+//     border-right: solid rgb(218, 215, 215);
+//   }
 
-  .border-right {
-    border-right: solid rgb(218, 215, 215);
-  }
-
-  .description {
-    text-align: start;
-    margin: auto 0.5rem;
-  }
+//   .description {
+//     text-align: start;
+//     margin: auto 0.5rem;
+//   }
 
 
-  i {
-    vertical-align: auto;
-    color: white;
-    background-color: $airbnb-red;
-    padding: 0.8rem;
-    border-radius: 50%;
-  }
+//   i {
+//     vertical-align: auto;
+//     color: white;
+//     background-color: $airbnb-red;
+//     padding: 0.8rem;
+//     border-radius: 50%;
+//   }
 
-  button {
-    background-color: $airbnb-red;
-    border-radius: 1000px;
-    border: none;
-  }
+//   button {
+//     background-color: $airbnb-red;
+//     border-radius: 1000px;
+//     border: none;
+//   }
 
-  .search {
-    padding: .5rem;
-    border-radius: 1000px;
+//   .search {
+//     padding: .5rem;
+//     border-radius: 1000px;
 
-    p {
-      margin: auto;
-      margin-right: 0.5rem;
-    }
-  }
+//     p {
+//       margin: auto;
+//       margin-right: 0.5rem;
+//     }
+//   }
 
-  .white {
-    color: white;
-  }
-}
+//   .white {
+//     color: white;
+//   }
+// }
 
-// -------------- guests dropdown ----------------- //
-.guests {
-  width: 400px;
-  border: solid $light-gray;
-  padding: 1rem;
-  border-radius: 20px;
+// .search-location {
+//   border: none;
+//   padding: 0.1rem;
+// }
 
-  .section {
-    justify-content: space-between;
-    padding: 1rem 0.5rem;
-  }
+// // -------------- guests dropdown ----------------- //
+// .guests {
+//   width: 400px;
+//   border: solid $light-gray;
+//   padding: 1rem;
+//   border-radius: 20px;
 
-  .add-guests {
-    margin: auto .5rem;
-  }
+//   .section {
+//     justify-content: space-between;
+//     padding: 1rem 0.5rem;
+//   }
 
-  i {
-    color: gray;
-    margin: auto .4rem;
-    border: solid gray;
-    border-radius: 50%;
-    border-width: 1px;
-    padding: 0.5rem;
-    font-size: 0.6rem;
+//   .add-guests {
+//     margin: auto .5rem;
+//   }
+
+//   i {
+//     color: gray;
+//     margin: auto .4rem;
+//     border: solid gray;
+//     border-radius: 50%;
+//     border-width: 1px;
+//     padding: 0.5rem;
+//     font-size: 0.6rem;
+//   }
+// }
+
+/* -------- OVERLAY ------- */
+.search-overlay {
+  position: absolute;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+
+  form {
+    padding: 2rem;
+    background-color: white;
   }
 }
