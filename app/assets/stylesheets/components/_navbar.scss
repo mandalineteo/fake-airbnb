@@ -176,6 +176,11 @@
   background-color: rgba(0, 0, 0, 0.4);
   height: 100%;
   width: 100%;
+  transition: 300ms;
+  // opacity: 1;
+  // transform-origin: top;
+  // transform: scale(0.8);
+
 
   form {
     padding: 2rem;
