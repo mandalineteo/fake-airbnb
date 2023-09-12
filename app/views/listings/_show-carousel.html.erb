@@ -1,0 +1,19 @@
+<% photos = listing.photos.first(5) %>
+
+<div class="row">
+
+  <div class="col-6 p-2 g-col-6 rounded-start-5">
+    <%= cl_image_tag photos.shift.key, width: 300, height: 410, class: 'd-block w-100 rounded' %>
+  </div>
+
+  <div class="col-6 p-2 g-col-6 pt-1">
+    <div class="row">
+      <% photos.each do |photo| %>
+        <div class="col-6 g-1 pb-1">
+          <%= cl_image_tag photo.key, width: 300, height: 200, class: 'd-block w-100 rounded' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
