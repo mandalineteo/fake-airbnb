@@ -90,7 +90,7 @@ if seed_listings
 
     image_source = "https://source.unsplash.com/featured/600x600/?interior%20design&id=#{rand(100000)}"
     puts '    -- attaching image...'
-    3.times do
+    5.times do
       image_url = URI.open(image_source)
       listing.photos.attach(io: image_url, filename: "#{listing.name.split.join('-')}.png", content_type: "image/png")
     end

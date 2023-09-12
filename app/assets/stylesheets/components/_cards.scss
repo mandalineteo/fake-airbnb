@@ -1,4 +1,4 @@
-.listing-card {
+.listing-payment-details-card {
   border: 2px solid rgb(221, 221, 221);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   border-radius: 10px;
@@ -6,6 +6,29 @@
 }
 
 .card {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+/* BOOKING CARD */
+.booking-card {
+  overflow: hidden;
+  height: 100%;
+  background-color: $light-gray;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+  img {
+    height: 100%;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
 }
