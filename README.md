@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# Fake Airbnb
+
+Project Link: https://fake-airbnb-9cf36c0ad09a.herokuapp.com/
